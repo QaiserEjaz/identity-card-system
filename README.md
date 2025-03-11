@@ -1,8 +1,28 @@
-# Identity Card Management System
+<div align="center">
+
+# 🆔 Identity Card Management System
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 
 A full-stack web application for managing identity cards with advanced features, built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
+[Live Demo](https://your-demo-link.com) | [Documentation](./docs) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
+
+<img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
+
+</div>
+
 ![Dashboard Preview](./docs/images/dashboard.png)
+
+<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
+
+<table>
+<tr>
+<td bgcolor="#f6f8fa">
 
 ## ✨ Features
 
@@ -21,7 +41,17 @@ A full-stack web application for managing identity cards with advanced features,
 - Pagination for large datasets
 - Search and filter capabilities
 
+</td>
+</tr>
+</table>
+
 ![Card Detail View](./docs/images/card-detail.png)
+
+<div style="background: linear-gradient(to right, #019CAD, #4880EC); height: 2px; margin: 20px 0;"></div>
+
+<table>
+<tr>
+<td bgcolor="#f6f8fa">
 
 ## 🛠️ Tech Stack
 
@@ -41,12 +71,18 @@ A full-stack web application for managing identity cards with advanced features,
 - Rate limiting
 - Environment variables
 
+</td>
+</tr>
+</table>
+
 ## 🚀 Live Demo
 
 - Frontend: [https://identity-card-system.vercel.app](https://identity-card-system.vercel.app)
 - Backend: [https://identity-card-api.onrender.com](https://identity-card-api.onrender.com)
 
 ![PDF Export Feature](./docs/images/pdf-export.png)
+
+<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
 
 ## 📱 Application Structure
 ```plaintext
@@ -75,20 +111,22 @@ identity-card-system/
 │
 ├── .gitignore        
 ├── package-lock.json        # Project locked dependencies
-├── package.json        # Project dependencies
+├── package.json            # Project dependencies
 └── README.md
 ```
 
-## 💻 Installation
+## 🚀 Quick Start
+
+<table>
+<tr>
+<td bgcolor="#f6f8fa">
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js (v14+)
 - MongoDB
-- npm or yarn
+- npm/yarn
 
-### Setup Steps
-
-1. Clone the repository
+### Installation
 ```bash
 git clone https://github.com/yourusername/identity-card-system.git
 cd identity-card-system
@@ -127,3 +165,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - React documentation
 - MongoDB documentation
 - Express.js guides
+
+# Made with ❤️ by Qaiser Ejaz
