@@ -24,15 +24,17 @@ A full-stack web application for managing identity cards with advanced features,
 <tr>
 <td bgcolor="#f6f8fa">
 
-## ✨ Features
+---
+## 🚀 Features
+---
 
-### 🎯 Core Functionality
-- Create, read, update, and delete identity cards
-- Image upload for photos and signatures
-- PDF generation and preview
-- QR code generation for each card
-- Responsive design for all devices
-- Multiple view options (Card/Table view)
+> ### 🎯 Core Functionality
+> - Create, read, update, and delete identity cards
+> - Image upload for photos and signatures
+> - PDF generation and preview
+> - QR code generation for each card
+> - Responsive design for all devices
+> - Multiple view options (Card/Table view)
 
 ### 💡 Advanced Features
 - Real-time form validation
@@ -53,7 +55,9 @@ A full-stack web application for managing identity cards with advanced features,
 <tr>
 <td bgcolor="#f6f8fa">
 
-## 🛠️ Tech Stack
+---
+## 💻 Tech Stack
+---
 
 ### Frontend
 - React.js with Vite
