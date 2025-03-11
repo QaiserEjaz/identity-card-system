@@ -8,26 +8,29 @@
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 
-A full-stack web application for managing identity cards with advanced features, built using the MERN stack.
+A full-stack web application for managing identity cards with advanced features, built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
 [Live Demo](https://your-demo-link.com) | [Documentation](./docs) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
 
-</div>
-
 <img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
 
-___
+</div>
 
-<details>
-<summary><h2>✨ Features</h2></summary>
+![Dashboard Preview](./docs/images/dashboard.png)
+
+<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
+
+
+
+## ✨ Features
 
 ### 🎯 Core Functionality
-+ Create, read, update, and delete identity cards
-+ Image upload for photos and signatures
-+ PDF generation and preview
-+ QR code generation for each card
-+ Responsive design for all devices
-+ Multiple view options (Card/Table view)
+- Create, read, update, and delete identity cards
+- Image upload for photos and signatures
+- PDF generation and preview
+- QR code generation for each card
+- Responsive design for all devices
+- Multiple view options (Card/Table view)
 
 ### 💡 Advanced Features
 - Real-time form validation
@@ -36,21 +39,14 @@ ___
 - Pagination for large datasets
 - Search and filter capabilities
 
-</td>
-</tr>
-</table>
 
 ![Card Detail View](./docs/images/card-detail.png)
 
 <div style="background: linear-gradient(to right, #019CAD, #4880EC); height: 2px; margin: 20px 0;"></div>
 
-<table>
-<tr>
-<td bgcolor="#f6f8fa">
 
----
-## 💻 Tech Stack
----
+
+## 🛠️ Tech Stack
 
 ### Frontend
 - React.js with Vite
@@ -68,9 +64,7 @@ ___
 - Rate limiting
 - Environment variables
 
-</td>
-</tr>
-</table>
+
 
 ## 🚀 Live Demo
 
