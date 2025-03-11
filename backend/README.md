@@ -57,3 +57,4 @@ backend/
 ├── index.js             # Application entry point
 ├── package.json         # Project dependencies
 └── README.md            # Project documentation
+ ```
