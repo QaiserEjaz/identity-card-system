@@ -6,20 +6,23 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
+[![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
+[![Font Awesome](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white)](https://fontawesome.com/)
+[![QR Code](https://img.shields.io/badge/QR_Code-000000?style=for-the-badge&logo=qrcode&logoColor=white)](https://www.npmjs.com/package/qrcode)
+[![Redux Thunk](https://img.shields.io/badge/Redux_Thunk-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://github.com/reduxjs/redux-thunk)
+[![CORS](https://img.shields.io/badge/CORS-000000?style=for-the-badge&logo=cors&logoColor=white)](https://www.npmjs.com/package/cors)
 
 A full-stack web application for managing identity cards with advanced features, built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
-[Live Demo](https://your-demo-link.com) | [Documentation](./docs) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
+[Live Demo](https://your-demo-link.com) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
 
 <img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
 
 </div>
-
-![Dashboard Preview](./docs/images/dashboard.png)
-
-<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
-
 
 
 ## ✨ Features
@@ -39,12 +42,42 @@ A full-stack web application for managing identity cards with advanced features,
 - Pagination for large datasets
 - Search and filter capabilities
 
+___
 
+## 📸 Screenshots & Interface
+
+<div align="center">
+
+### 🖥️ Dashboard View
+![Dashboard Preview](./docs/images/dashboard.png)
+
+### 📝 Input Form Interface
+![Input Form](./docs/images/input-form.png)
+
+### 🎴 Card View Layout
+![Card View](./docs/images/card-view.png)
+
+### 📋 List View Interface
+![List View](./docs/images/list-view.png)
+
+### 📱 Card Detail Interface
 ![Card Detail View](./docs/images/card-detail.png)
 
-<div style="background: linear-gradient(to right, #019CAD, #4880EC); height: 2px; margin: 20px 0;"></div>
+### 📄 PDF Export Feature
+![Exported Pdf](./docs/images/exported-pdf.png)
 
+</div>
 
+### Key Interface Features:
+- Clean and intuitive dashboard layout
+- Responsive card detail view
+- Professional PDF export design
+- Dark/Light mode support
+- Mobile-friendly interface
+- Interactive data tables
+- Modern form controls
+
+___
 
 ## 🛠️ Tech Stack
 
@@ -64,16 +97,18 @@ A full-stack web application for managing identity cards with advanced features,
 - Rate limiting
 - Environment variables
 
-
+___
 
 ## 🚀 Live Demo
 
 - Frontend: [https://identity-card-system.vercel.app](https://identity-card-system.vercel.app)
 - Backend: [https://identity-card-api.onrender.com](https://identity-card-api.onrender.com)
 
-![PDF Export Feature](./docs/images/pdf-export.png)
+### 📄 Exported PDF Example
+![PDF Export Feature](./docs/images/exported-pdf.png)
 
-<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
+
+___
 
 ## 📱 Application Structure
 ```plaintext
@@ -105,12 +140,9 @@ identity-card-system/
 ├── package.json            # Project dependencies
 └── README.md
 ```
+___
 
 ## 🚀 Quick Start
-
-<table>
-<tr>
-<td bgcolor="#f6f8fa">
 
 ### Prerequisites
 - Node.js (v14+)
@@ -119,7 +151,7 @@ identity-card-system/
 
 ### Installation
 ```bash
-git clone https://github.com/yourusername/identity-card-system.git
+git clone https://github.com/QaiserEjaz/identity-card-system.git
 cd identity-card-system
  ```
  
@@ -147,9 +179,7 @@ npm install
 ```plaintext
 VITE_API_URL=http://localhost:5000
  ```
-
- ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+___
 
 ## 👏 Acknowledgments
 - Bootstrap themes and components
@@ -157,4 +187,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - MongoDB documentation
 - Express.js guides
 
-# Made with ❤️ by Qaiser Ejaz
+
+<h2 align="center">
+Engineered with ⚡ Precision by Qaiser Ejaz
+</h2>

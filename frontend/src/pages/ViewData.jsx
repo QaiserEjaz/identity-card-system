@@ -220,8 +220,8 @@ function ViewData() {
     return (
         <div className="container">
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
-                <h2 className="mb-0">Identity Cards</h2>
-                <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto">
+                {/* <h2 className="mb-0">Identity Cards</h2> */}
+                <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
                     <div className="btn-group w-100 w-sm-auto">
                         <button 
                             className="btn btn-success text-nowrap"

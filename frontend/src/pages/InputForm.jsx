@@ -138,7 +138,7 @@ function InputForm() {
 
     return (
         <div className="container mt-4">
-            <h2>{id ? 'Edit Card' : 'Add New Card'}</h2>
+            {/* <h2>{id ? 'Edit Card' : 'Add New Card'}</h2> */}
             <div className="row justify-content-center">
                 <div className="col-lg-8">
                     <div className="card shadow-lg border-0 rounded-3">
