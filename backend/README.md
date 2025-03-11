@@ -36,60 +36,24 @@ A Node.js backend service for managing identity cards with image upload capabili
 ## Project Structure
 ```plaintext
 backend/
-├── index.js          # Main application file
-├── routes/          
-│   └── auth.js       # Authentication routes
-├── models/           # Database models
-├── middleware/       # Custom middleware
-└── uploads/          # Temporary storage for uploads
- ```
+├── middleware/
+│   ├── errorHandler.js    # Global error handler
+│   └── ratelimiter.js         # Rate limiting middleware
+│
+├── models/
+│   ├── Card.js            # Card schema and model
+│   └── User.js            # User schema and model
+│
+├── routes/
+│   └── auth.js            # JWT authentication
+│
 
-## Security Features
-- Rate limiting to prevent abuse
-- Password hashing
-- JWT authentication
-- File size restrictions
-- CORS enabled
-
-## Error Handling
-The application includes a global error handler that manages:
-
-- Validation errors
-- Authentication errors
-- File upload errors
-- Database errors
-
-## Development
-To start the development server with hot reload:
-
-```bash
-npm run dev
- ```
-
-For production:
-
-```bash
-npm start
- ```
-
-
- ## Environment Variables
- ### Variable                              Description Required MONGODB_URI
-
-MongoDB connection string                   Yes 
-
-JWT_SECRET Secret key for JWT               Yes
-
-PORT Server port (default: 5000)            No
-
-## Prerequisites
-
-- Node.js (v14 or higher)
-- MongoDB installed and running
-- npm or yarn package manager
-
-## Setup
-
-1. Install dependencies:
-```bash
-npm install
+├── uploads/               # Temporary file storage
+│   └── .gitkeep          # Keep empty directory in git
+│
+├── .env                  # Environment variables
+├── .gitignore           # Git ignore configuration
+├── db.js
+├── index.js             # Application entry point
+├── package.json         # Project dependencies
+└── README.md            # Project documentation

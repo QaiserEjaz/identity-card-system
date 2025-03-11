@@ -158,8 +158,8 @@ function ViewData() {
                     valign: 'middle'
                 },
                 columnStyles: {
-                    0: { cellWidth: 6 },
-                    1: { cellWidth: 27 },
+                    0: { cellWidth: 10 },
+                    1: { cellWidth: 28 },
                     2: { cellWidth: 20 },
                     3: { cellWidth: 20 },
                     4: { cellWidth: 32 },

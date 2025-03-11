@@ -38,18 +38,62 @@ A modern React-based frontend for managing and generating digital identity cards
 ## 📁 Project Structure
 ```plaintext
 frontend/
+├── public/              # Public assets
+│   ├── images/         # Public images
+│   └── favicon.ico     # Site favicon
+│
 ├── src/
-│   ├── components/     # Reusable components
-│   ├── pages/         # Page components
-│   ├── context/       # React context
-│   ├── utils/         # Utility functions
-│   ├── assets/        # Static assets
-│   ├── styles/        # CSS files
-│   ├── App.jsx        # Main app component
-│   └── main.jsx       # Entry point
-├── public/            # Public assets
-└── index.html         # HTML template
- ```
+│   ├── components/
+│   │   ├── cards/           # Card-related components
+│   │   │   ├── CardView.jsx
+│   │   │   └── TableView.jsx
+│   │   │
+│   │   ├── common/           # Common UI components
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── LoadingSpinner.jsx
+│   │   │   ├── Pagination.jsx
+│   │   │   ├── Serach.jsx
+│   │   │   └── Toast.jsx
+│   │   │
+│   │   ├── layout/          # Layout components
+│   │   │   └── Navbar.jsx
+│   │   │
+│   │   ├── pdf/            # PDF related components
+│   │   │   └── PDFPreview.jsx
+│   │   │
+│   │   └── PrivateRoute.jsx
+│   │
+│   ├── pages/               # Page components
+│   │   ├── DetailedView.jsx # Single card view
+│   │   ├── InputForm.jsx    # Card creation/edit form
+│   │   ├── Login.jsx    # Admin login page
+│   │   └── ViewData.jsx     # Cards list view
+│   │
+│   ├── redux/               # Redux state management
+│   │   ├── authSlice.js   # Redux slices
+│   │   └── store.js    # Redux store configuration
+│   │
+│   ├── services/           # API services
+│   │   └── pdfService.js  # Pdf-Structure
+│   │
+│   ├── styles/            # Global styles
+│   │   └── global.css     # Main stylesheet
+│   │
+│   ├── utils/             # Utility functions
+│   │   └── api.js         # Axios instance setup
+│   │
+│   ├── App.css         
+│   ├── App.jsx          # Main app component
+│   ├── index.css
+│   └── main.jsx         # Entry point
+│
+├── .gitignore        
+├── index.html          # HTML template
+├── package-lock.json        # Project locked dependencies
+├── package.json        # Project dependencies
+├── README.md
+└── vite.config.js      # Vite configuration
+```
 
 ## 🔑 Key Components
 - Card Management

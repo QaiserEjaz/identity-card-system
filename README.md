@@ -51,24 +51,32 @@ A full-stack web application for managing identity cards with advanced features,
 ## 📱 Application Structure
 ```plaintext
 identity-card-system/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   └── utils/
-│   ├── public/
-│   └── index.html
-│
 ├── backend/
 │   ├── routes/
 │   ├── models/
 │   ├── middleware/
-│   └── uploads/
+│   ├── uploads/
+│   ├── .env
+│   ├── db.js
+│   └── index.js
 │
-└── docs/
-    └── images/
- ```
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── redux/
+│   │   ├── services/
+│   │   ├── styles/
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   └── index.html
+│
+├── .gitignore        
+├── package-lock.json        # Project locked dependencies
+├── package.json        # Project dependencies
+└── README.md
 
 ## 💻 Installation
 

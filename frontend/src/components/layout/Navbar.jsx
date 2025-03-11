@@ -1,62 +1,53 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../features/auth/authSlice';
+import { logout } from '../../redux/authSlice';
 
 function Navbar() {
-    const { user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const { token } = useSelector(state => state.auth);
+    
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-gradient" style={{ backgroundColor: '#1a237e' }}>
             <div className="container">
-                <Link className="navbar-brand fw-bold" to="/">
+                <Link className="navbar-brand d-flex align-items-center" to="/">
                     <i className="fas fa-id-card me-2"></i>
-                    ID Card System
+                    Identity Card System
                 </Link>
-                
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto align-items-center">
+                    <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             <Link className="nav-link" to="/">
-                                <i className="fas fa-home me-1"></i> Home
+                                <i className="fas fa-th-list me-1"></i> View Cards
                             </Link>
                         </li>
-                        {user ? (
+                        {token ? (
                             <>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/add">
-                                        <i className="fas fa-plus-circle me-1"></i> Add Card
+                                        <i className="fas fa-plus-circle me-1"></i> New Card
                                     </Link>
                                 </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                        <i className="fas fa-user-circle me-1"></i> {user.name}
-                                    </a>
-                                    <ul className="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <button 
-                                                className="dropdown-item text-danger"
-                                                onClick={() => {
-                                                    dispatch(logout());
-                                                    navigate('/login');
-                                                }}
-                                            >
-                                                <i className="fas fa-sign-out-alt me-1"></i> Logout
-                                            </button>
-                                        </li>
-                                    </ul>
+                                <li className="nav-item">
+                                    <button 
+                                        className="nav-link btn btn-link" 
+                                        onClick={handleLogout}
+                                    >
+                                        <i className="fas fa-sign-out-alt me-1"></i> Logout
+                                    </button>
                                 </li>
                             </>
                         ) : (
                             <li className="nav-item">
-                                <Link className="btn btn-primary" to="/login">
-                                    <i className="fas fa-sign-in-alt me-1"></i> Login
+                                <Link className="nav-link" to="/admin">
+                                    <i className="fas fa-lock me-1"></i> Admin Login
                                 </Link>
                             </li>
                         )}

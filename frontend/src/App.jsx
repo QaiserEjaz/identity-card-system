@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import ViewData from './pages/ViewData.jsx';
 import DetailedView from './pages/DetailedView';
-import Navbar from './components/Navbar';
 import InputForm from './pages/inputform.jsx';
 import Login from './pages/Login';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import Navbar from './components/layout/Navbar.jsx';
 
 
 function App() {
