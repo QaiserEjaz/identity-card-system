@@ -77,6 +77,7 @@ identity-card-system/
 ├── package-lock.json        # Project locked dependencies
 ├── package.json        # Project dependencies
 └── README.md
+```
 
 ## 💻 Installation
 
@@ -91,7 +92,8 @@ identity-card-system/
 ```bash
 git clone https://github.com/yourusername/identity-card-system.git
 cd identity-card-system
-
+ ```
+ 
 2. Backend Setup
 ```bash
 cd backend
