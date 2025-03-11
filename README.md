@@ -8,33 +8,26 @@
 [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 
-A full-stack web application for managing identity cards with advanced features, built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
+A full-stack web application for managing identity cards with advanced features, built using the MERN stack.
 
 [Live Demo](https://your-demo-link.com) | [Documentation](./docs) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
 
-<img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
-
 </div>
 
-![Dashboard Preview](./docs/images/dashboard.png)
+<img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
 
-<div style="background: linear-gradient(to right, #4880EC, #019CAD); height: 2px; margin: 20px 0;"></div>
+___
 
-<table>
-<tr>
-<td bgcolor="#f6f8fa">
+<details>
+<summary><h2>✨ Features</h2></summary>
 
----
-## 🚀 Features
----
-
-> ### 🎯 Core Functionality
-> - Create, read, update, and delete identity cards
-> - Image upload for photos and signatures
-> - PDF generation and preview
-> - QR code generation for each card
-> - Responsive design for all devices
-> - Multiple view options (Card/Table view)
+### 🎯 Core Functionality
++ Create, read, update, and delete identity cards
++ Image upload for photos and signatures
++ PDF generation and preview
++ QR code generation for each card
++ Responsive design for all devices
++ Multiple view options (Card/Table view)
 
 ### 💡 Advanced Features
 - Real-time form validation
