@@ -1,14 +1,17 @@
 {
   "name": "identity-management-system",
   "version": "1.0.0",
-  "workspaces": ["frontend", "backend"],
   "scripts": {
-    "install": "npm install --workspaces",
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend && npm run dev",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "devDependencies": {
     "concurrently": "^8.0.1"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "react-redux": "^9.2.0",
+    "redux-thunk": "^3.1.0"
   }
 }

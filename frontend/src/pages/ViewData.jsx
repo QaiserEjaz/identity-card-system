@@ -18,7 +18,7 @@ function ViewData() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
-    const cardsPerPage = 10;
+    const cardsPerPage = 6;
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -74,6 +74,11 @@ function ViewData() {
     useEffect(() => {
         fetchCards();
     }, []); // Remove cards dependency to prevent infinite loop
+
+    // Add this function to manually refresh data
+    const refreshData = () => {
+        fetchCards();
+    };
 
     const handleSearch = (term) => {
         setSearchTerm(term);
@@ -220,35 +225,43 @@ function ViewData() {
     return (
         <div className="container">
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
-                {/* <h2 className="mb-0">Identity Cards</h2> */}
                 <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
-                    <div className="btn-group w-100 w-sm-auto">
-                        <button 
-                            className="btn btn-success text-nowrap"
-                            onClick={downloadAllUsersPDF}
-                        >
-                            <i className="fas fa-download me-1"></i> Download List
-                        </button>
-                        <button 
-                            className="btn btn-info text-nowrap"
-                            onClick={generatePreviewPDF}
-                        >
-                            <i className="fas fa-eye me-1"></i> Preview List
-                        </button>
-                    </div>
-                    <div className="btn-group w-100 w-sm-auto">
-                        <button 
-                            className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
-                            onClick={() => setViewMode('table')}
-                        >
-                            <i className="fas fa-list me-1"></i> Table
-                        </button>
-                        <button 
-                            className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
-                            onClick={() => setViewMode('card')}
-                        >
-                            <i className="fas fa-th-large me-1"></i> Cards
-                        </button>
+                    <button 
+                        className="btn btn-secondary"
+                        onClick={refreshData}
+                    >
+                        <i className="fas fa-sync-alt me-1"></i> Refresh
+                    </button>
+                    {/* <h2 className="mb-0">Identity Cards</h2> */}
+                    <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
+                        <div className="btn-group w-100 w-sm-auto">
+                            <button 
+                                className="btn btn-success text-nowrap"
+                                onClick={downloadAllUsersPDF}
+                            >
+                                <i className="fas fa-download me-1"></i> Download List
+                            </button>
+                            <button 
+                                className="btn btn-info text-nowrap"
+                                onClick={generatePreviewPDF}
+                            >
+                                <i className="fas fa-eye me-1"></i> Preview List
+                            </button>
+                        </div>
+                        <div className="btn-group w-100 w-sm-auto">
+                            <button 
+                                className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                onClick={() => setViewMode('table')}
+                            >
+                                <i className="fas fa-list me-1"></i> Table
+                            </button>
+                            <button 
+                                className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                onClick={() => setViewMode('card')}
+                            >
+                                <i className="fas fa-th-large me-1"></i> Cards
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

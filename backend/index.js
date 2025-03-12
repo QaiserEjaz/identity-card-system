@@ -5,7 +5,7 @@ import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import Card from './models/card.js';
+import Card from './models/Card.js';
 // import { limiter } from './middleware/rateLimiter.js';
 // import { errorHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/auth.js';
