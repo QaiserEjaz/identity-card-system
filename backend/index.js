@@ -7,8 +7,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Card from './models/Card.js';
 import authRoutes from './routes/auth.js';
-import { errorHandler } from './middleware/errorhandler.js';
-import { limiter } from './middleware/ratelimiter.js';
+// Fix these imports to match the exact filename case
+import { errorHandler } from './middleware/errorHandler.js';
+import { limiter } from './middleware/rateLimiter.js';
 
 dotenv.config();
 const app = express();
@@ -160,15 +161,15 @@ app.delete('/api/cards/:id', async (req, res) => {
     }
 });
 
+// Add a root route for basic testing
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Identity Card System API is running' });
+});
+
 // This should be the very last part of your file
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
-});
-
-// Add a root route for basic testing
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Identity Card System API is running' });
 });
 
 
