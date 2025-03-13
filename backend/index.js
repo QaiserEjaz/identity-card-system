@@ -38,15 +38,10 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-    destination: './uploads/',
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
-
+// Modify the multer setup to use memory storage instead of disk storage
+// Remove the disk storage configuration
 const upload = multer({
+    storage: multer.memoryStorage(), // Use memory storage instead
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB limit
     }
@@ -169,6 +164,11 @@ app.delete('/api/cards/:id', async (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
+});
+
+// Add a root route for basic testing
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Identity Card System API is running' });
 });
 
 
