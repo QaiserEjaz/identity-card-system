@@ -39,7 +39,7 @@ function TableView({ cards, onDelete, showActions, handleProtectedAction }) {
                                 </td>
                                 <td className="align-middle font-weight-medium">{card.name}</td>
                                 <td className="align-middle">{card.fathername}</td>
-                                <td className="align-middle">{card.cnic}</td>
+                                <td className="align-middle">{card.cnic.replace(/(\d{5})(\d{7})(\d{1})/, '$1-$2-$3')}</td>
                                 <td className="align-middle">{new Date(card.dob).toLocaleDateString()}</td>
                                 <td className="align-middle text-break">{card.address}</td>
                                 <td>

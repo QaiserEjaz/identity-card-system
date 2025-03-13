@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setCredentials, selectIsAuthenticated } from '../redux/authSlice';
+import api from '../utils/api';  // Add this import
 
 function Login() {
     // Rename setCredentials to avoid conflict
@@ -27,14 +28,10 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(credentials),
-            });
-            const data = await response.json();
+            const response = await api.post('/auth/login', credentials);
+            const data = response.data;
             
-            if (response.ok && data.success) {
+            if (response.status === 200 && data.success) {
                 const { token, user } = data.data;
                 if (token && user) {
                     dispatch(setCredentials({ token, user })); // Now uses Redux setCredentials

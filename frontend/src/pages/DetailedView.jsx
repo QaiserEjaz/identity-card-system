@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import { QRCodeSVG } from 'qrcode.react';
 import Barcode from 'react-barcode';
+import api from '../utils/api';
 
 function DetailedView() {
     const { id } = useParams();
@@ -11,7 +12,8 @@ function DetailedView() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/cards/${id}`);
+                const res = await api.get(`/cards/${id}`);  // Updated API call
+
                 setData(res.data);
             } catch (error) {
                 console.error('Error fetching detailed data:', error);
@@ -197,8 +199,8 @@ function DetailedView() {
                                                 transition: 'box-shadow 0.3s ease',
                                             }}
                                             onMouseEnter={(e) =>
-                                                (e.target.style.boxShadow =
-                                                    'inset 0 0 8px rgba(0,100,0,0.3), 0 0 10px #32CD32')
+                                            (e.target.style.boxShadow =
+                                                'inset 0 0 8px rgba(0,100,0,0.3), 0 0 10px #32CD32')
                                             }
                                             onMouseLeave={(e) =>
                                                 (e.target.style.boxShadow = 'inset 0 0 4px rgba(0,100,0,0.15)')
@@ -303,9 +305,8 @@ function DetailedView() {
                                             </label>
                                             <h6 className="mb-0">
                                                 <i
-                                                    className={`fas fa-${
-                                                        data.gender === 'male' ? 'mars' : 'venus'
-                                                    } me-1`}
+                                                    className={`fas fa-${data.gender === 'male' ? 'mars' : 'venus'
+                                                        } me-1`}
                                                     style={{ color: '#32CD32' }}
                                                 ></i>
                                                 {data.gender?.charAt(0).toUpperCase() + data.gender?.slice(1)}
@@ -321,9 +322,8 @@ function DetailedView() {
                                             </label>
                                             <h6 className="mb-0">
                                                 <i
-                                                    className={`fas fa-${
-                                                        data.maritalStatus === 'married' ? 'ring' : 'user'
-                                                    } me-1`}
+                                                    className={`fas fa-${data.maritalStatus === 'married' ? 'ring' : 'user'
+                                                        } me-1`}
                                                     style={{ color: '#32CD32' }}
                                                 ></i>
                                                 {data.maritalStatus?.charAt(0).toUpperCase() +
@@ -361,7 +361,7 @@ function DetailedView() {
             </div>
 
             {/* Inline CSS for Futuristic Look */}
-            <style jsx>{`
+            <style>{`
                 .data-field {
                     background: linear-gradient(145deg, rgba(255,255,255,0.8), rgba(235,250,235,0.7));
                     padding: 0.5rem;

@@ -17,7 +17,13 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Middleware
-app.use(cors());
+// Update CORS configuration
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://your-vercel-domain.vercel.app', 'http://localhost:3000']
+        : 'http://localhost:3000',
+    credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use(limiter);  // Only declare once
@@ -105,28 +111,30 @@ app.put('/api/cards/:id', upload, async (req, res) => {
     }
 });
 
-// // Add after existing middleware
-// app.use(limiter);
-// app.use('/api/auth', authRoutes);
-
 // Add pagination to GET cards endpoint
 app.get('/api/cards', async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
-        const skip = (page - 1) * limit;
-
+        const limit = parseInt(req.query.limit) || 6;
         const total = await Card.countDocuments();
+        
+        // Get all cards with proper skip and limit
         const cards = await Card.find()
             .sort({ createdAt: -1 })
-            .skip(skip)
+            .skip((page - 1) * limit)
             .limit(limit);
 
         res.json({
             cards,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            totalItems: total
+            pagination: {
+                currentPage: page,
+                totalPages: Math.ceil(total / limit),
+                totalItems: total,
+                hasNextPage: (page * limit) < total, // Fixed next page logic
+                hasPrevPage: page > 1,
+                itemsPerPage: limit,
+                remainingItems: total - (page * limit)
+            }
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -154,33 +162,6 @@ app.delete('/api/cards/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
-// Remove this duplicate route
-// app.put('/api/cards/:id', upload.single('photo'), async (req, res) => {
-//     try {
-//         const updateData = { ...req.body };
-//         
-//         if (req.file) {
-//             const imageBuffer = req.file.buffer;
-//             const base64Image = `data:${req.file.mimetype};base64,${imageBuffer.toString('base64')}`;
-//             updateData.photo = base64Image;
-//         }
-
-//         const card = await Card.findByIdAndUpdate(
-//             req.params.id,
-//             updateData,
-//             { new: true }
-//         );
-
-//         if (!card) {
-//             return res.status(404).json({ error: 'Card not found' });
-//         }
-
-//         res.json(card);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

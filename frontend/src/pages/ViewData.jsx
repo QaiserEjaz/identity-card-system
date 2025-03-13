@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../components/common/Search';
-import Pagination from '../components/common/Pagination';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import TableView from '../components/cards/TableView.jsx';
@@ -18,30 +17,36 @@ function ViewData() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
+    const [paginationInfo, setPaginationInfo] = useState({
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPrevPage: false
+    });
     const cardsPerPage = 6;
-    
+
     const navigate = useNavigate();
     const location = useLocation();
     const { token, user } = useSelector(state => state.auth);
     const isAdmin = true; // Change this line to always show edit and delete buttons
-    
+
     const handleProtectedAction = (action, id) => {
         if (action === 'view') {
             navigate(`/view/${id}`);
             return;
         }
-        
+
         if (action === 'edit' || action === 'delete') {
             if (!token) {
-                navigate('/admin', { 
-                    state: { 
+                navigate('/admin', {
+                    state: {
                         from: location.pathname,
                         message: 'Please login as admin to perform this action'
                     }
                 });
                 return;
             }
-            
+
             if (action === 'delete') {
                 handleDelete(id);
             } else {
@@ -55,17 +60,27 @@ function ViewData() {
     const fetchCards = async () => {
         try {
             setIsLoading(true);
-            const res = await api.get('/cards');
-            const cardsData = Array.isArray(res.data) ? res.data : res.data.cards || [];
-            setCards(cardsData);
-            setFilteredCards(cardsData);
+            const res = await api.get(`/cards?page=${currentPage}&limit=${cardsPerPage}&loadMore=true`);
+            const { cards: newCards, pagination } = res.data;
+
+            await new Promise(resolve => setTimeout(resolve, 100)); // Small delay for smooth transition
+
+            setCards(prevCards => {
+                if (currentPage === 1) return newCards;
+                return [...prevCards, ...newCards];
+            });
+
+            setFilteredCards(prevFiltered => {
+                if (currentPage === 1) return newCards;
+                return [...prevFiltered, ...newCards];
+            });
+
+            setPaginationInfo(pagination);
         } catch (error) {
             console.error('Error fetching data:', error);
             if (error.response?.status === 429) {
                 alert('Too many requests. Please wait a moment and try again.');
             }
-            setCards([]);
-            setFilteredCards([]);
         } finally {
             setIsLoading(false);
         }
@@ -73,29 +88,19 @@ function ViewData() {
 
     useEffect(() => {
         fetchCards();
-    }, []); // Remove cards dependency to prevent infinite loop
-
-    // Add this function to manually refresh data
-    const refreshData = () => {
-        fetchCards();
-    };
+    }, [currentPage]); // Add currentPage as dependency
 
     const handleSearch = (term) => {
         setSearchTerm(term);
-        const filtered = cards.filter(card => 
+        const filtered = cards.filter(card =>
             card.name.toLowerCase().includes(term.toLowerCase()) ||
             card.cnic.includes(term) ||
             card.address.toLowerCase().includes(term.toLowerCase())
         );
         setFilteredCards(filtered);
-        setCurrentPage(1);
+        // setCurrentPage(1);
     };
-    
-    // Calculate pagination
-    const indexOfLastCard = currentPage * cardsPerPage;
-    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = filteredCards.slice(indexOfFirstCard, indexOfLastCard);
-    const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+
 
     const handleDelete = async (id) => {
         if (!token) {
@@ -105,9 +110,19 @@ function ViewData() {
 
         if (window.confirm('Are you sure you want to delete this card?')) {
             try {
-                await api.delete(`/api/cards/${id}`);
+                await api.delete(`/cards/${id}`);
+
+                // Remove the deleted card from both states
+                setCards(prevCards => prevCards.filter(card => card._id !== id));
+                setFilteredCards(prevFiltered => prevFiltered.filter(card => card._id !== id));
+
+                // Reset to page 1 if current page becomes empty
+                if (filteredCards.length <= cardsPerPage && currentPage > 1) {
+                    setCurrentPage(1);
+                }
+
                 alert('Card deleted successfully');
-                fetchCards();
+                // fetchCards();
             } catch (error) {
                 console.error('Error deleting card:', error);
                 alert('Error deleting card');
@@ -117,13 +132,13 @@ function ViewData() {
 
     const generatePDF = (forDownload = false) => {
         const doc = new jsPDF();
-        
+
         doc.setFontSize(16);
         doc.text('Identity Cards List', 14, 15);
-        
+
         const processImages = cards.map(async (card) => {
             if (!card.photo) return { ...card, imageData: null };
-            
+
             try {
                 const response = await fetch(card.photo);
                 if (!response.ok) throw new Error('Failed to fetch image');
@@ -141,7 +156,7 @@ function ViewData() {
                 return { ...card, imageData: null };
             }
         });
-    
+
         Promise.all(processImages).then(cardsWithImages => {
             doc.autoTable({
                 head: [['#', 'Photo', 'Name', 'Father\'s Name', 'CNIC', 'DOB', 'Address']],
@@ -173,7 +188,7 @@ function ViewData() {
                 bodyStyles: {
                     minCellHeight: 30 // Increased row height for better image display
                 },
-                didDrawCell: function(data) {
+                didDrawCell: function (data) {
                     if (data.column.index === 1 && data.cell.raw?.image) {
                         const img = data.cell.raw.image;
                         const imgWidth = data.cell.width - 4; // Use full cell width
@@ -190,14 +205,14 @@ function ViewData() {
                         );
                     }
                 },
-                willDrawCell: function(data) {
+                willDrawCell: function (data) {
                     // Check if row would split across pages
                     if (data.row.index > 0 && data.cell.y + data.cell.height > doc.internal.pageSize.height - 10) {
                         doc.addPage();
                         data.cell.y = 15;
                     }
                 },
-                didParseCell: function(data) {
+                didParseCell: function (data) {
                     // Prevent column splitting
                     if (data.row.index > 0 && data.cell.raw === 'No Image') {
                         data.cell.styles.minCellHeight = 30;
@@ -208,7 +223,7 @@ function ViewData() {
                     }
                 }
             });
-    
+
             if (forDownload) {
                 doc.save('Identity_Cards_List.pdf');
             } else {
@@ -218,30 +233,24 @@ function ViewData() {
             }
         });
     };
-        
-        const downloadAllUsersPDF = () => generatePDF(true);
-        const generatePreviewPDF = () => generatePDF(false);
+
+    const downloadAllUsersPDF = () => generatePDF(true);
+    const generatePreviewPDF = () => generatePDF(false);
 
     return (
         <div className="container">
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
                 <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
-                    <button 
-                        className="btn btn-secondary"
-                        onClick={refreshData}
-                    >
-                        <i className="fas fa-sync-alt me-1"></i> Refresh
-                    </button>
                     {/* <h2 className="mb-0">Identity Cards</h2> */}
                     <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
                         <div className="btn-group w-100 w-sm-auto">
-                            <button 
+                            <button
                                 className="btn btn-success text-nowrap"
                                 onClick={downloadAllUsersPDF}
                             >
                                 <i className="fas fa-download me-1"></i> Download List
                             </button>
-                            <button 
+                            <button
                                 className="btn btn-info text-nowrap"
                                 onClick={generatePreviewPDF}
                             >
@@ -249,13 +258,13 @@ function ViewData() {
                             </button>
                         </div>
                         <div className="btn-group w-100 w-sm-auto">
-                            <button 
+                            <button
                                 className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
                                 onClick={() => setViewMode('table')}
                             >
                                 <i className="fas fa-list me-1"></i> Table
                             </button>
-                            <button 
+                            <button
                                 className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
                                 onClick={() => setViewMode('card')}
                             >
@@ -270,7 +279,7 @@ function ViewData() {
                     <div className="card-body p-0">  {/* Removed padding */}
                         <div className="d-flex justify-content-between align-items-center p-3">  {/* Added padding to header */}
                             <h4 className="card-title mb-0">PDF Preview</h4>
-                            <button 
+                            <button
                                 className="btn btn-secondary"
                                 onClick={() => setPdfUrl(null)}
                             >
@@ -280,7 +289,7 @@ function ViewData() {
                         <iframe
                             src={pdfUrl}
                             width="100%"
-                            height="800px"  
+                            height="800px"
                             title="PDF Preview"
                             className="border-0"
                             style={{
@@ -293,35 +302,48 @@ function ViewData() {
                     </div>
                 </div>
             )}
-            
+
             <Search onSearch={handleSearch} />
-            
-            {isLoading ? <LoadingSpinner /> : (
+
+            {isLoading && currentPage === 1 ? (
+                <LoadingSpinner />
+            ) : (
                 <>
                     {viewMode === 'table' ? (
-                        <TableView 
-                            cards={currentCards} 
+                        <TableView
+                            cards={filteredCards} // Changed from currentCards
                             onDelete={(id) => handleProtectedAction('delete', id)}
                             onView={(id) => handleProtectedAction('view', id)}
                             handleProtectedAction={handleProtectedAction}
-                            showActions={true}  // Force show actions
+                            showActions={true}
                         />
                     ) : (
-                        <CardView 
-                            cards={currentCards} 
+                        <CardView
+                            cards={filteredCards} // Changed from currentCards
                             onDelete={(id) => handleProtectedAction('delete', id)}
                             onView={(id) => handleProtectedAction('view', id)}
                             handleProtectedAction={handleProtectedAction}
-                            showActions={true}  // Force show actions
+                            showActions={true}
                         />
                     )}
-                    
-                    {totalPages > 1 && (
-                        <Pagination 
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            onPageChange={setCurrentPage}
-                        />
+
+                    {paginationInfo.hasNextPage && (
+                        <div className="text-center mt-3">
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => setCurrentPage(prev => prev + 1)}
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                        Loading...
+                                    </>
+                                ) : (
+                                    'Load More'
+                                )}
+                            </button>
+                        </div>
                     )}
                 </>
             )}

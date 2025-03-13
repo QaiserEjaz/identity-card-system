@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
@@ -34,13 +33,21 @@ function InputForm() {
             const response = await api.get(`/cards/${id}`);
             const card = response.data;
             setFormData({
-                name: card.name,
-                fathername: card.fathername,
-                cnic: card.cnic,
-                dob: card.dob.split('T')[0],
-                address: card.address,
-                photo: card.photo // Keep the existing photo
+                name: card.name || '',
+                fathername: card.fathername || '',
+                cnic: card.cnic || '',
+                dob: card.dob ? card.dob.split('T')[0] : '',
+                address: card.address || '',
+                photo: card.photo || null,
+                gender: card.gender || '',
+                religion: card.religion || '',
+                bloodGroup: card.bloodGroup || '',
+                profession: card.profession || '',
+                birthMark: card.birthMark || '',
+                maritalStatus: card.maritalStatus || '',
+                signature: card.signature || null
             });
+            
         } catch (error) {
             console.error('Error:', error);
             if (error.response?.status === 429) {
@@ -50,10 +57,73 @@ function InputForm() {
         }
     };
 
-    const handleFileChange = (e) => {
-        setFormData({ ...formData, photo: e.target.files[0] });
+    const MAX_FILE_SIZE = 500 * 1024; // 500KB in bytes
+
+        const compressImage = async (file) => {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        if (width > 600) {
+                            height = Math.floor(height * (600 / width));
+                            width = 600;
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // Convert to base64 string directly
+                        const base64String = canvas.toDataURL('image/jpeg', 0.6);
+                        resolve(base64String);
+                    };
+                };
+            });
+        };
+    
+        const validateFileSize = (file, fieldName) => {
+            if (file && file.size > MAX_FILE_SIZE) {
+                throw new Error(`${fieldName} size must be less than 500KB`);
+            }
+        };
+
+    // Add file size validation to file input handlers
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        try {
+            validateFileSize(file, 'Photo');
+            const base64Image = await compressImage(file);
+            setFormData({ ...formData, photo: base64Image });
+        } catch (error) {
+            e.target.value = '';
+            alert(error.message);
+        }
     };
 
+    const handleSignatureChange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        try {
+            validateFileSize(file, 'Signature');
+            const base64Image = await compressImage(file);
+            setFormData({ ...formData, signature: base64Image });
+        } catch (error) {
+            e.target.value = '';
+            alert(error.message);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -111,11 +181,13 @@ function InputForm() {
             form.append('birthMark', formData.birthMark);
             form.append('maritalStatus', formData.maritalStatus);
             
-            if (formData.photo) {
-                form.append('photo', formData.photo);
+
+            // Only include photo/signature if they're new or changed
+            if (formData.photo && formData.photo.startsWith('data:image')) {
+                form.photo = formData.photo;
             }
-            if (formData.signature) {
-                form.append('signature', formData.signature);
+            if (formData.signature && formData.signature.startsWith('data:image')) {
+                form.signature = formData.signature;
             }
 
             let response;
@@ -364,7 +436,7 @@ function InputForm() {
                                                 className="form-control form-control-sm"
                                                 id="signature"
                                                 name="signature"
-                                                onChange={(e) => setFormData({ ...formData, signature: e.target.files[0] })}
+                                                onChange={handleSignatureChange}
                                                 accept="image/*"
                                             />
                                             <small className="text-muted d-block mt-1">
@@ -411,7 +483,7 @@ function InputForm() {
                                                 required={!id}
                                             />
                                             <small className="text-muted d-block mt-1">
-                                                Supported: JPG, PNG, GIF (Max: 5MB)
+                                                Supported: JPG, PNG (Max: 2MB)
                                             </small>
                                         </div>
                                     </div>

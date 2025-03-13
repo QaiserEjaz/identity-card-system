@@ -24,7 +24,7 @@ function CardView({ cards, onDelete, showActions, onView, handleProtectedAction 
                             <h5 className="card-title text-truncate">{card.name}</h5>
                             <div className="small text-muted mb-3">
                                 <div className="text-truncate"><strong>Father:</strong> {card.fathername}</div>
-                                <div><strong>CNIC:</strong> {card.cnic}</div>
+                                <div><strong>CNIC:</strong> {card.cnic.replace(/(\d{5})(\d{7})(\d{1})/, '$1-$2-$3')}</div>
                                 <div><strong>DOB:</strong> {new Date(card.dob).toLocaleDateString()}</div>
                                 <div className="text-truncate"><strong>Address:</strong> {card.address}</div>
                             </div>

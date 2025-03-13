@@ -1,13 +1,12 @@
 # Dependencies
 node_modules/
-/frontend/node_modules
-/backend/node_modules
 **/node_modules/
 
 # Environment variables
 .env
-**/.env
 .env.local
+.env.development
+.env.production
 .env.development.local
 .env.test.local
 .env.production.local
