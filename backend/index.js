@@ -15,33 +15,23 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Middleware
-// Update CORS configuration
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
         ? ['https://identity-card-system.vercel.app', process.env.CORS_ORIGIN]
         : 'http://localhost:3000',
     credentials: true
 }));
+app.use(express.json());
+app.use('/uploads', express.static('uploads'));
+app.use(limiter);
 
-// Add health check endpoint
+// Routes
+app.use('/api/auth', authRoutes);
+
+// Health check endpoint for Railway
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
 });
-
-// ... rest of your code ...
-
-// Update the listen method
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
-app.use(express.json());
-app.use('/uploads', express.static('uploads'));
-app.use(limiter);  // Only declare once
-
-// Routes
-app.use('/api/auth', authRoutes);  // Only declare auth routes once
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
@@ -173,6 +163,12 @@ app.delete('/api/cards/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+// This should be the very last part of your file
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 
