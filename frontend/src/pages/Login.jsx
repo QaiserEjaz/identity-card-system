@@ -56,12 +56,14 @@ function Login() {
                         <div className="card-body">
                             <h3 className="card-title text-center mb-4">Admin Login</h3>
                             {error && <div className="alert alert-danger">{error}</div>}
-                            <form onSubmit={handleSubmit} noValidate>
+                            <form onSubmit={handleSubmit} noValidate id="loginForm">
                                 <div className="mb-3">
-                                    <label className="form-label">Email</label>
+                                    <label htmlFor="email" className="form-label">Email</label>
                                     <input
                                         type="email"
                                         className="form-control"
+                                        id="email"
+                                        name="email"
                                         value={credentials.email || ''}
                                         onChange={(e) =>
                                             setFormCredentials((prev) => ({
@@ -74,10 +76,12 @@ function Login() {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label className="form-label">Password</label>
+                                    <label htmlFor="password" className="form-label">Password</label>
                                     <input
                                         type="password"
                                         className="form-control"
+                                        id="password"
+                                        name="password"
                                         value={credentials.password || ''}
                                         onChange={(e) =>
                                             setFormCredentials((prev) => ({
@@ -89,7 +93,11 @@ function Login() {
                                         required
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100">
+                                <button 
+                                    type="submit" 
+                                    className="btn btn-primary w-100"
+                                    id="loginButton"
+                                >
                                     Login as Admin
                                 </button>
                             </form>

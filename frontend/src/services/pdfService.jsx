@@ -46,7 +46,7 @@ export const generateCardPDF = (card) => {
     doc.text('Name', 20, 60);
     doc.text(card.name, 20, 70);
     
-    doc.text('Father Name', 20, 85);
+    doc.text('Father\'s Name', 20, 85);
     doc.text(card.fathername, 20, 95);
     
     doc.text('Identity Number', 20, 110);

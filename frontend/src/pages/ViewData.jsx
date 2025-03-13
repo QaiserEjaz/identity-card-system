@@ -242,35 +242,33 @@ function ViewData() {
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
                 <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
                     {/* <h2 className="mb-0">Identity Cards</h2> */}
-                    <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
-                        <div className="btn-group w-100 w-sm-auto">
-                            <button
-                                className="btn btn-success text-nowrap"
-                                onClick={downloadAllUsersPDF}
-                            >
-                                <i className="fas fa-download me-1"></i> Download List
-                            </button>
-                            <button
-                                className="btn btn-info text-nowrap"
-                                onClick={generatePreviewPDF}
-                            >
-                                <i className="fas fa-eye me-1"></i> Preview List
-                            </button>
-                        </div>
-                        <div className="btn-group w-100 w-sm-auto">
-                            <button
-                                className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                onClick={() => setViewMode('table')}
-                            >
-                                <i className="fas fa-list me-1"></i> Table
-                            </button>
-                            <button
-                                className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                onClick={() => setViewMode('card')}
-                            >
-                                <i className="fas fa-th-large me-1"></i> Cards
-                            </button>
-                        </div>
+                    <div className="btn-group w-100 w-sm-auto">
+                        <button
+                            className="btn btn-success text-nowrap"
+                            onClick={downloadAllUsersPDF}
+                        >
+                            <i className="fas fa-download me-1"></i> Download List
+                        </button>
+                        <button
+                            className="btn btn-info text-nowrap"
+                            onClick={generatePreviewPDF}
+                        >
+                            <i className="fas fa-eye me-1"></i> Preview List
+                        </button>
+                    </div>
+                    <div className="btn-group w-100 w-sm-auto">
+                        <button
+                            className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setViewMode('table')}
+                        >
+                            <i className="fas fa-list me-1"></i> Table
+                        </button>
+                        <button
+                            className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setViewMode('card')}
+                        >
+                            <i className="fas fa-th-large me-1"></i> Cards
+                        </button>
                     </div>
                 </div>
             </div>
