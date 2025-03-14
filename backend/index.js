@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Middleware
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://identity-card-system.vercel.app', process.env.CORS_ORIGIN]
+        ? ['https://identity-card-system.vercel.app','http://localhost:3000', process.env.CORS_ORIGIN, ]
         : 'http://localhost:3000',
     credentials: true
 }));
