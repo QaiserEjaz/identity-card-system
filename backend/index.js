@@ -16,11 +16,25 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Middleware
+// app.use(cors({
+//     origin: process.env.NODE_ENV === 'production' 
+//         ? ['https://identity-card-system.vercel.app','http://localhost:3000', process.env.CORS_ORIGIN, ]
+//         : 'http://localhost:3000',
+//     credentials: true
+// }));
+
+// Update CORS configuration
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://identity-card-system.vercel.app','http://localhost:3000', process.env.CORS_ORIGIN, ]
+        ? [
+            'https://identity-card-system.vercel.app',
+            'http://localhost:3000', // Add this for development
+            process.env.CORS_ORIGIN
+          ].filter(Boolean)
         : 'http://localhost:3000',
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
