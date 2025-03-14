@@ -9,6 +9,11 @@ function Navbar() {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // Add this check to hide navbar on login page
+    if (location.pathname === '/admin') {
+        return null;
+    }
+    
     const handleLogout = () => {
         dispatch(logout());
         setIsMenuOpen(false);
