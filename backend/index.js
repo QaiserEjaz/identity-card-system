@@ -27,8 +27,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
         ? [
-            'https://identity-card-system.vercel.app',
-            'http://localhost:3000', // Add this for development
+            'https://identity-card-system.vercel.app/',
+            'https://identity-card-system-qaiser-ejaz-projects.vercel.app/',
+            'https://identity-card-system-git-main-qaiser-ejaz-projects.vercel.app/',
+            'https://identity-card-system-backend.up.railway.app',
             process.env.CORS_ORIGIN
           ].filter(Boolean)
         : 'http://localhost:3000',
