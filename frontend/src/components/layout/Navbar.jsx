@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/authSlice';
 
 function Navbar() {
     const dispatch = useDispatch();
-    const { token } = useSelector(state => state.auth);
+    const { token, user } = useSelector(state => state.auth);
     const location = useLocation();
-    
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const handleLogout = () => {
         dispatch(logout());
+        setIsMenuOpen(false);
     };
 
     const isCurrentPath = (path) => {
@@ -33,17 +35,29 @@ function Navbar() {
                     textDecoration: 'none',
                     transition: 'all 0.3s ease'
                 }}>
-                    <i className="fas fa-id-card me-2"></i>
+                    <i className="fas fa-id-card me-2" style={{fontSize:'1.6rem'}}></i>
                     Identity Card System
                 </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style={{
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    padding: '0.5rem'
-                }}>
-                    <span className="navbar-toggler-icon"></span>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    style={{
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        padding: '0.5rem',
+                        color: '#ffffff',
+                    }}
+                >
+                    {isMenuOpen ? (
+                        <i className="fas fa-times" style={{ fontSize: '1.6rem', width:'22px' }}></i>
+                    ) : (
+                        <i className='fas fa-bars' style={{ fontSize: '1.6rem', width:'22px' }}></i>
+                    )}
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto" style={{ gap: '1rem' }}>
+                <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="navbarNav">
+                    <ul className="navbar-nav ms-auto " style={{ gap: '1rem' }}>
                         {!isCurrentPath('/') && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/" style={{
@@ -70,9 +84,26 @@ function Navbar() {
                                         </Link>
                                     </li>
                                 )}
+
                                 <li className="nav-item">
-                                    <button 
-                                        className="nav-link btn btn-link" 
+                                    <div style={{
+                                        color: '#ffffff',
+                                        padding: '0.5rem 1rem',
+                                        border: '0px solid rgba(255, 255, 255, 0.2)',
+                                        borderRadius: '8px',
+                                        display: 'flex',
+                                        background: 'transparent',
+                                        alignItems: 'center',
+                                        gap: '0.5rem'
+                                    }}>
+                                        <i className="fas fa-user-circle" style={{ fontSize: '1.2rem' }}></i>
+                                        <span>{user?.name || 'Admin'}</span>
+                                    </div>
+                                </li>
+
+                                <li className="nav-item">
+                                    <button
+                                        className="nav-link btn btn-link"
                                         onClick={handleLogout}
                                         style={{
                                             color: 'rgba(255, 255, 255, 0.9)',
@@ -93,6 +124,7 @@ function Navbar() {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/admin" style={{
                                         color: 'rgba(255, 255, 255, 0.9)',
+                                        border: '1px solid rgba(255, 255, 255, 0.2)',
                                         padding: '0.5rem 1rem',
                                         borderRadius: '8px',
                                         transition: 'all 0.3s ease'
@@ -115,8 +147,23 @@ function Navbar() {
                     .navbar-toggler:focus {
                         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
                     }
-                    .navbar-toggler-icon {
-                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+                    .navbar-toggler {
+                        border: none !important;
+                        padding: 0.5rem !important;
+                    }
+                    .navbar-toggler:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 8px;
+                    }
+                    @media (max-width: 991px) {
+                        .navbar-collapse {
+                            padding: 1rem;
+                            border-radius: 0 0 12px 12px;
+                            margin-top: 0.5rem;
+                        }
+                        .navbar-nav {
+                            gap: 0.5rem !important;
+                        }
                     }
                 `}
             </style>
