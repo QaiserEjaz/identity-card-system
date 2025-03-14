@@ -1,14 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/authSlice';
 
 function Navbar() {
     const dispatch = useDispatch();
     const { token } = useSelector(state => state.auth);
+    const location = useLocation();
     
     const handleLogout = () => {
         dispatch(logout());
+    };
+
+    const isCurrentPath = (path) => {
+        return location.pathname === path;
     };
 
     return (
@@ -39,32 +44,32 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto" style={{ gap: '1rem' }}>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/" style={{
-                                color: 'rgba(255, 255, 255, 0.9)',
-                                padding: '0.5rem 1rem',
-                                borderRadius: '8px',
-                                transition: 'all 0.3s ease',
-                                ':hover': {
-                                    background: 'rgba(255, 255, 255, 0.1)',
-                                    color: '#ffffff'
-                                }
-                            }}>
-                                <i className="fas fa-th-list me-1"></i> View Cards
-                            </Link>
-                        </li>
+                        {!isCurrentPath('/') && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/" style={{
+                                    color: 'rgba(255, 255, 255, 0.9)',
+                                    padding: '0.5rem 1rem',
+                                    borderRadius: '8px',
+                                    transition: 'all 0.3s ease'
+                                }}>
+                                    <i className="fas fa-th-list me-1"></i> View Cards
+                                </Link>
+                            </li>
+                        )}
                         {token ? (
                             <>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/add" style={{
-                                        color: 'rgba(255, 255, 255, 0.9)',
-                                        padding: '0.5rem 1rem',
-                                        borderRadius: '8px',
-                                        transition: 'all 0.3s ease'
-                                    }}>
-                                        <i className="fas fa-plus-circle me-1"></i> New Card
-                                    </Link>
-                                </li>
+                                {!isCurrentPath('/add') && (
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/add" style={{
+                                            color: 'rgba(255, 255, 255, 0.9)',
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '8px',
+                                            transition: 'all 0.3s ease'
+                                        }}>
+                                            <i className="fas fa-plus-circle me-1"></i> New Card
+                                        </Link>
+                                    </li>
+                                )}
                                 <li className="nav-item">
                                     <button 
                                         className="nav-link btn btn-link" 
@@ -84,16 +89,18 @@ function Navbar() {
                                 </li>
                             </>
                         ) : (
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/admin" style={{
-                                    color: 'rgba(255, 255, 255, 0.9)',
-                                    padding: '0.5rem 1rem',
-                                    borderRadius: '8px',
-                                    transition: 'all 0.3s ease'
-                                }}>
-                                    <i className="fas fa-lock me-1"></i> Admin Login
-                                </Link>
-                            </li>
+                            !isCurrentPath('/admin') && (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/admin" style={{
+                                        color: 'rgba(255, 255, 255, 0.9)',
+                                        padding: '0.5rem 1rem',
+                                        borderRadius: '8px',
+                                        transition: 'all 0.3s ease'
+                                    }}>
+                                        <i className="fas fa-lock me-1"></i> Admin Login
+                                    </Link>
+                                </li>
+                            )
                         )}
                     </ul>
                 </div>
