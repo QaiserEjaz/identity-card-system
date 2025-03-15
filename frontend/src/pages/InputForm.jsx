@@ -166,44 +166,59 @@ function InputForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        try {
-            const form = new FormData();
-            form.append('name', formData.name.trim());
-            form.append('fathername', formData.fathername.trim());
-            form.append('cnic', formData.cnic.replace(/\D/g, ''));
-            form.append('dob', formData.dob);
-            form.append('address', formData.address.trim());
-            form.append('gender', formData.gender);
-            form.append('religion', formData.religion);
-            form.append('bloodGroup', formData.bloodGroup);
-            form.append('profession', formData.profession);
-            form.append('birthMark', formData.birthMark);
-            form.append('maritalStatus', formData.maritalStatus);
-            
 
-            // Only include photo/signature if they're new or changed
-            if (formData.photo && formData.photo.startsWith('data:image')) {
-                form.photo = formData.photo;
+        try {
+            // Validate required fields first
+            if (!formData.name || !formData.fathername || !formData.cnic || !formData.dob || 
+                !formData.address || !formData.gender || !formData.religion || !formData.maritalStatus) {
+                throw new Error('Please fill in all required fields');
             }
-            if (formData.signature && formData.signature.startsWith('data:image')) {
-                form.signature = formData.signature;
+
+            // Validate CNIC format
+            const cnicRegex = /^\d{5}-\d{7}-\d{1}$/;
+            if (!cnicRegex.test(formData.cnic)) {
+                throw new Error('Invalid CNIC format. Please use: XXXXX-XXXXXXX-X');
             }
+
+            // Create FormData object
+            const submitData = new FormData();
+
+            // Validate photo for new cards
+            if (!id && !formData.photo) {
+                throw new Error('Photo is required for new cards');
+            }
+
+            // Append all form fields
+            Object.keys(formData).forEach(key => {
+                if (formData[key] !== null && formData[key] !== undefined) {
+                    if (key === 'photo' || key === 'signature') {
+                        if (formData[key] && formData[key].startsWith('data:image')) {
+                            submitData.append(key, formData[key]);
+                        }
+                    } else {
+                        submitData.append(key, formData[key]);
+                    }
+                }
+            });
 
             let response;
             if (id) {
-                response = await api.put(`/cards/${id}`, form);
+                response = await api.put(`/cards/${id}`, submitData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
             } else {
-                response = await api.post('/cards', form);
+                response = await api.post('/cards', submitData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
             }
-    
+
             if (response.data) {
                 alert(id ? 'Card updated successfully!' : 'Card created successfully!');
                 navigate('/');
             }
         } catch (error) {
-            console.error('Error details:', error.response?.data);
-            const errorMessage = error.response?.data?.error || 'An error occurred';
+            console.error('Error details:', error.response?.data || error.message);
+            const errorMessage = error.response?.data?.error || error.message || 'An error occurred';
             alert(errorMessage);
         }
     };

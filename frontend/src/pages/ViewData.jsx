@@ -242,30 +242,120 @@ function ViewData() {
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
                 <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto mt-2">
                     {/* <h2 className="mb-0">Identity Cards</h2> */}
-                    <div className="btn-group w-100 w-sm-auto">
+                    <div className="btn-group w-100 w-sm-auto gap-2">
                         <button
-                            className="btn btn-success text-nowrap"
+                            className="btn text-white"
                             onClick={downloadAllUsersPDF}
+                            style={{
+                                background: 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)',
+                                border: 'none',
+                                borderRadius:'12px',
+                                padding: '0.5rem 1rem',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                            }}
                         >
                             <i className="fas fa-download me-1"></i> Download List
                         </button>
                         <button
-                            className="btn btn-info text-nowrap"
+                            className="btn text-white"
                             onClick={generatePreviewPDF}
+                            style={{
+                                background: 'linear-gradient(90deg, #00bf8f 0%, #001510 100%)',
+                                border: 'none',
+                                borderRadius:'12px',
+                                padding: '0.5rem 1rem',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                            }}
                         >
                             <i className="fas fa-eye me-1"></i> Preview List
                         </button>
                     </div>
-                    <div className="btn-group w-100 w-sm-auto">
+                    <div className="btn-group w-100 w-sm-auto gap-2">
                         <button
-                            className={`btn ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            className="btn"
                             onClick={() => setViewMode('table')}
+                            style={{
+                                background: viewMode === 'table' 
+                                    ? 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)'
+                                    : 'transparent',
+                                color: viewMode === 'table' ? '#ffffff' : '#00bf8f',
+                                border: '1px solid #00bf8f',
+                                borderRadius:'12px',
+                                padding: '0.5rem 1rem',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                            }}
                         >
                             <i className="fas fa-list me-1"></i> Table
                         </button>
                         <button
-                            className={`btn ${viewMode === 'card' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            className="btn"
                             onClick={() => setViewMode('card')}
+                            style={{
+                                background: viewMode === 'card' 
+                                    ? 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)'
+                                    : 'transparent',
+                                color: viewMode === 'card' ? '#ffffff' : '#00bf8f',
+                                border: '1px solid #00bf8f',
+                                borderRadius:'12px',
+                                padding: '0.5rem 1rem',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                            }}
                         >
                             <i className="fas fa-th-large me-1"></i> Cards
                         </button>
@@ -274,12 +364,32 @@ function ViewData() {
             </div>
             {pdfUrl && (
                 <div className="card mb-4">
-                    <div className="card-body p-0">  {/* Removed padding */}
-                        <div className="d-flex justify-content-between align-items-center p-3">  {/* Added padding to header */}
+                    <div className="card-body p-0">
+                        <div className="d-flex justify-content-between align-items-center p-3">
                             <h4 className="card-title mb-0">PDF Preview</h4>
                             <button
-                                className="btn btn-secondary"
+                                className="btn text-white"
                                 onClick={() => setPdfUrl(null)}
+                                style={{
+                                    background: 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)',
+                                    border: 'none',
+                                    padding: '0.5rem 1rem',
+                                    transition: 'all 0.3s ease',
+                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                                }}
                             >
                                 <i className="fas fa-times me-1"></i> Close Preview
                             </button>
@@ -328,9 +438,31 @@ function ViewData() {
                     {paginationInfo.hasNextPage && (
                         <div className="text-center mt-3">
                             <button
-                                className="btn btn-primary"
+                                className="btn text-white"
                                 onClick={() => setCurrentPage(prev => prev + 1)}
                                 disabled={isLoading}
+                                style={{
+                                    background: 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)',
+                                    border: 'none',
+                                    borderRadius: '12px',
+                                    padding: '0.5rem 2rem',
+                                    transition: 'all 0.3s ease',
+                                    opacity: isLoading ? 0.7 : 1,
+                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                                transform: 'translateY(0)',
+                                ':hover': {
+                                    transform: 'translateY(-2px)',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                                }
+                            }}
+                            onMouseOver={e => {
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            }}
+                            onMouseOut={e => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                                }}
                             >
                                 {isLoading ? (
                                     <>
