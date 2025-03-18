@@ -320,3 +320,39 @@ code {
     padding: 0.8rem 2rem;
     font-size: 1.1rem;
 }
+
+/* Dashboard Styles */
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #4e54c8, #8f94fb);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(45deg, #1cb142, #3dca64);
+}
+
+.bg-gradient-info {
+    background: linear-gradient(45deg, #11cdef, #1171ef);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(45deg, #fb6340, #fbb140);
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}

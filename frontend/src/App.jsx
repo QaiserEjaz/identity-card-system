@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Navbar from './components/layout/Navbar.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<ViewData />} />
                         <Route path="/admin" element={<Login />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/add" element={
                             <PrivateRoute>
                                 <InputForm />

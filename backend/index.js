@@ -5,24 +5,15 @@ import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import Card from './models/Card.js';
 import authRoutes from './routes/auth.js';
-// Fix these imports to match the exact filename case
 import { errorHandler } from './middleware/errorHandler.js';
 import { limiter } from './middleware/rateLimiter.js';
+import dashboardRoutes from './routes/dashboard.js';  // Note the .js extension
+import Card from './models/Card.js';
 
 dotenv.config();
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// Middleware
-// app.use(cors({
-//     origin: process.env.NODE_ENV === 'production' 
-//         ? ['https://identity-card-system.vercel.app','http://localhost:3000', process.env.CORS_ORIGIN, ]
-//         : 'http://localhost:3000',
-//     credentials: true
-// }));
-
 // Update CORS configuration
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
@@ -44,6 +35,7 @@ app.use(limiter);
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Health check endpoint for Railway
 app.get('/health', (req, res) => {
@@ -69,27 +61,30 @@ const upload = multer({
 
 app.post('/api/cards', upload, async (req, res) => {
     try {
-        const photoFile = req.files?.photo?.[0];
-        const signatureFile = req.files?.signature?.[0];
-
-        if (!photoFile) {
+        const cardData = req.body;
+        
+        // Check if photo is provided either in body or files
+        if (!cardData.photo && (!req.files?.photo || !req.files.photo[0])) {
             return res.status(400).json({ error: 'Photo is required' });
         }
 
-        const photoBase64 = `data:${photoFile.mimetype};base64,${photoFile.buffer.toString('base64')}`;
-        const signatureBase64 = signatureFile 
-            ? `data:${signatureFile.mimetype};base64,${signatureFile.buffer.toString('base64')}`
-            : null;
+        // Handle photo from file upload or base64
+        if (req.files?.photo?.[0]) {
+            const photoFile = req.files.photo[0];
+            cardData.photo = `data:${photoFile.mimetype};base64,${photoFile.buffer.toString('base64')}`;
+        }
 
-        const card = new Card({
-            ...req.body,
-            photo: photoBase64,
-            signature: signatureBase64
-        });
+        // Handle signature if provided
+        if (req.files?.signature?.[0]) {
+            const signatureFile = req.files.signature[0];
+            cardData.signature = `data:${signatureFile.mimetype};base64,${signatureFile.buffer.toString('base64')}`;
+        }
 
+        const card = new Card(cardData);
         await card.save();
         res.status(201).json(card);
     } catch (error) {
+        console.error('Card creation error:', error);
         res.status(400).json({ error: error.message });
     }
 });

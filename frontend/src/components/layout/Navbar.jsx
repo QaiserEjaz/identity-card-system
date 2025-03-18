@@ -90,6 +90,18 @@ function Navbar() {
                                     </li>
                                 )}
 
+                                {token && (
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/dashboard" style={{
+                                            color: 'rgba(255, 255, 255, 0.9)',
+                                            padding: '0.5rem 1rem',
+                                            borderRadius: '8px',
+                                            transition: 'all 0.3s ease'
+                                        }}>
+                                            <i className="fas fa-chart-line me-1"></i> Dashboard
+                                        </Link>
+                                    </li>
+                                )}
                                 <li className="nav-item">
                                     <div style={{
                                         color: '#ffffff',

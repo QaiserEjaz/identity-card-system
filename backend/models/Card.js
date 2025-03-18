@@ -14,6 +14,6 @@ const cardSchema = new mongoose.Schema({
     birthMark: { type: String },
     maritalStatus: { type: String, enum: ['single', 'married', 'divorced', 'widowed'] },
     signature: { type: String }
-});
+}, { timestamps: true });  // Add this option
 
 export default mongoose.model('Card', cardSchema);
