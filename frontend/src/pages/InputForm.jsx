@@ -229,14 +229,60 @@ function InputForm() {
             <div className="row justify-content-center">
                 <div className="col-lg-8">
                     <div className="card shadow-lg border-0 rounded-3">
-                        <div className="card-header bg-gradient text-white py-3" style={{ backgroundColor: '#1a237e' }}>
+                        <div className="card-header text-white py-3" 
+                            style={{ 
+                                background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
+                                borderRadius: '15px 15px 0 0'
+                            }}>
                             <h4 className="text-center mb-0">
                                 <i className="fas fa-id-card me-2"></i>
                                 {id ? 'Update Identity Card' : 'Create New Identity Card'}
                             </h4>
                         </div>
-                        <div className="card-body p-4">
-                            <form onSubmit={handleSubmit} className="row g-3">
+                        <div className="card-body p-4" style={{
+                            background: 'linear-gradient(to right bottom, #ffffff, #f8faf9)'
+                        }}>
+                            <form onSubmit={handleSubmit} className="row g-4">
+                                {/* Form inputs */}
+                                <style>{`
+                                    .form-control, .form-select {
+                                        border: 1px solid rgba(0, 106, 78, 0.2);
+                                        transition: all 0.3s ease;
+                                    }
+                                    .form-control:focus, .form-select:focus {
+                                        border-color: #006A4E;
+                                        box-shadow: 0 0 0 0.2rem rgba(0, 106, 78, 0.25);
+                                    }
+                                    .form-floating label {
+                                        color: #006A4E;
+                                    }
+                                    .btn-primary {
+                                        background: linear-gradient(135deg, #006A4E, #00bf8f);
+                                        border: none;
+                                        transition: transform 0.3s ease;
+                                    }
+                                    .btn-primary:hover {
+                                        transform: translateY(-2px);
+                                        background: linear-gradient(135deg, #005a42, #00a77c);
+                                    }
+                                    .card {
+                                        backdrop-filter: blur(10px);
+                                        border: 1px solid rgba(255, 255, 255, 0.2);
+                                    }
+                                    .form-floating input::placeholder,
+                                    .form-floating textarea::placeholder {
+                                        color: transparent;
+                                    }
+                                    .activity-card {
+                                        background: rgba(255,255,255,0.9);
+                                        border-radius: 10px;
+                                        transition: all 0.3s ease;
+                                    }
+                                    .activity-card:hover {
+                                        transform: translateY(-5px);
+                                        box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2);
+                                    }
+                                `}</style>
                                 <div className="col-md-6">
                                     <div className="form-floating">
                                         <input

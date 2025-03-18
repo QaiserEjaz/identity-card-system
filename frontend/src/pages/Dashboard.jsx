@@ -430,7 +430,7 @@ function Dashboard() {
     };
 
     return (
-        <div className="container-fluid py-3" style={{ background: '#f0f7f4' }}>
+        <div className="container-fluid py-3">
             <div className="row g-3">
                 {/* Stats Cards Row */}
                 <div className="col-md-4">
