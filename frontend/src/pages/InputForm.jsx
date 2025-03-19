@@ -47,7 +47,7 @@ function InputForm() {
                 maritalStatus: card.maritalStatus || '',
                 signature: card.signature || null
             });
-            
+
         } catch (error) {
             console.error('Error:', error);
             if (error.response?.status === 429) {
@@ -59,42 +59,42 @@ function InputForm() {
 
     const MAX_FILE_SIZE = 500 * 1024; // 500KB in bytes
 
-        const compressImage = async (file) => {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let width = img.width;
-                        let height = img.height;
-                        
-                        if (width > 600) {
-                            height = Math.floor(height * (600 / width));
-                            width = 600;
-                        }
-                        
-                        canvas.width = width;
-                        canvas.height = height;
-                        
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        
-                        // Convert to base64 string directly
-                        const base64String = canvas.toDataURL('image/jpeg', 0.6);
-                        resolve(base64String);
-                    };
+    const compressImage = async (file) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > 600) {
+                        height = Math.floor(height * (600 / width));
+                        width = 600;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Convert to base64 string directly
+                    const base64String = canvas.toDataURL('image/jpeg', 0.6);
+                    resolve(base64String);
                 };
-            });
-        };
-    
-        const validateFileSize = (file, fieldName) => {
-            if (file && file.size > MAX_FILE_SIZE) {
-                throw new Error(`${fieldName} size must be less than 500KB`);
-            }
-        };
+            };
+        });
+    };
+
+    const validateFileSize = (file, fieldName) => {
+        if (file && file.size > MAX_FILE_SIZE) {
+            throw new Error(`${fieldName} size must be less than 500KB`);
+        }
+    };
 
     // Add file size validation to file input handlers
     const handleFileChange = async (e) => {
@@ -169,7 +169,7 @@ function InputForm() {
 
         try {
             // Validate required fields first
-            if (!formData.name || !formData.fathername || !formData.cnic || !formData.dob || 
+            if (!formData.name || !formData.fathername || !formData.cnic || !formData.dob ||
                 !formData.address || !formData.gender || !formData.religion || !formData.maritalStatus) {
                 throw new Error('Please fill in all required fields');
             }
@@ -227,10 +227,10 @@ function InputForm() {
         <div className="container mt-4">
             {/* <h2>{id ? 'Edit Card' : 'Add New Card'}</h2> */}
             <div className="row justify-content-center">
-                <div className="col-lg-8">
-                    <div className="card shadow-lg border-0 rounded-3">
-                        <div className="card-header text-white py-3" 
-                            style={{ 
+                <div className="col-lg-9">
+                    <div className="card shadow-lg border-0 rounded-4">
+                        <div className="card-header text-white py-3"
+                            style={{
                                 background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
                                 borderRadius: '15px 15px 0 0'
                             }}>
@@ -250,39 +250,43 @@ function InputForm() {
                                         transition: all 0.3s ease;
                                     }
                                     .form-control:focus, .form-select:focus {
-                                        border-color: #006A4E;
-                                        box-shadow: 0 0 0 0.2rem rgba(0, 106, 78, 0.25);
+                                        border-color: rgb(78, 194, 163);
+                                        box-shadow: 0 0 0 0.2rem rgba(68, 170, 143, 0.25);
                                     }
                                     .form-floating label {
                                         color: #006A4E;
                                     }
-                                    .btn-primary {
-                                        background: linear-gradient(135deg, #006A4E, #00bf8f);
-                                        border: none;
-                                        transition: transform 0.3s ease;
-                                    }
-                                    .btn-primary:hover {
-                                        transform: translateY(-2px);
-                                        background: linear-gradient(135deg, #005a42, #00a77c);
-                                    }
-                                    .card {
-                                        backdrop-filter: blur(10px);
-                                        border: 1px solid rgba(255, 255, 255, 0.2);
+                                     .form-floating > .form-control:focus ~ label,
+                                    .form-floating > .form-control:not(:placeholder-shown) ~ label,
+                                    .form-floating > .form-select ~ label {
+                                        color: #6c757d;
+                                        opacity: 0.8;
                                     }
                                     .form-floating input::placeholder,
                                     .form-floating textarea::placeholder {
                                         color: transparent;
                                     }
-                                    .activity-card {
-                                        background: rgba(255,255,255,0.9);
-                                        border-radius: 10px;
-                                        transition: all 0.3s ease;
+                                    .text-muted {
+                                        color: #6c757d !important;
                                     }
-                                    .activity-card:hover {
-                                        transform: translateY(-5px);
-                                        box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2);
+                                    .form-control:invalid:not(:focus),
+                                    .form-select:invalid:not(:focus) {
+                                        border-color: #dc3545;
+                                    }
+
+                                    .invalid-feedback {
+                                        display: none;
+                                        color: #dc3545;
+                                        font-size: 0.875em;
+                                        margin-top: 0.25rem;
+                                    }
+
+                                    .form-control:invalid:not(:focus) + label + .invalid-feedback,
+                                    .form-select:invalid:not(:focus) + label + .invalid-feedback {
+                                        display: block;
                                     }
                                 `}</style>
+
                                 <div className="col-md-6">
                                     <div className="form-floating">
                                         <input
@@ -299,6 +303,10 @@ function InputForm() {
                                             <i className="fas fa-user me-2 text-muted"></i>
                                             Full Name
                                         </label>
+                                        <div className="invalid-feedback">
+                                            <i className="fas fa-exclamation-circle me-1"></i>
+                                            Full Name is required
+                                        </div>
                                     </div>
                                 </div>
 
@@ -362,8 +370,6 @@ function InputForm() {
                                     <small className="text-muted ms-2">Must be 18+ years old</small>
                                 </div>
 
-
-
                                 <div className="col-md-4">
                                     <div className="form-floating">
                                         <select
@@ -390,7 +396,7 @@ function InputForm() {
                                     <div className="form-floating">
                                         <input
                                             type="text"
-                                            className="form-control shadow-sm"
+                                            className="form-control shadow-sm text-muted"
                                             id="religion"
                                             name="religion"
                                             value={formData.religion}
@@ -507,7 +513,6 @@ function InputForm() {
                                     </div>
                                 </div>
 
-
                                 <div className="col-12">
                                     <div className="form-floating">
                                         <textarea
@@ -551,7 +556,26 @@ function InputForm() {
                                 </div>
 
                                 <div className="col-12 text-center mt-3">
-                                    <button type="submit" className="btn btn-primary px-4 py-2 shadow">
+                                    <button 
+                                        type="submit" 
+                                        className="btn px-4 py-2"
+                                        style={{
+                                            background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '12px',
+                                            transition: 'all 0.3s ease',
+                                            boxShadow: '0 4px 15px rgba(0, 106, 78, 0.2)',
+                                        }}
+                                        onMouseOver={e => {
+                                            e.currentTarget.style.transform = 'translateY(-2px)';
+                                            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 106, 78, 0.3)';
+                                        }}
+                                        onMouseOut={e => {
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 106, 78, 0.2)';
+                                        }}
+                                    >
                                         <i className="fas fa-save me-2"></i>
                                         {id ? 'Update Card' : 'Create Card'}
                                     </button>

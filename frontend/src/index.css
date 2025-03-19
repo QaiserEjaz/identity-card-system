@@ -22,7 +22,7 @@ code {
 
 .form-control:focus {
     border-color: #0d6efd;
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);  /* Focus glow effect */
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);  /* Focus glow effect */
 }
 
 /* General card styles */
@@ -283,7 +283,7 @@ code {
 }
 
 .container > .card textarea.form-control {
-    min-height: 100px;
+    min-height: 90px;
 }
 
 .container > .card .btn-primary {
@@ -303,12 +303,12 @@ code {
 }
 
 .container .form-control {
-    height: 3.5rem;
+    height: 2.5rem;
     font-size: 1rem;
 }
 
 .container textarea.form-control {
-    height: 120px !important;
+    height: 100px !important;
     padding-top: 1.5rem !important;
 }
 

@@ -46,7 +46,13 @@ function TableView({ cards, onDelete, showActions, handleProtectedAction }) {
                                     <div className="d-flex gap-2 justify-content-center">
                                         <Link 
                                             to={`/view/${card._id}`} 
-                                            className="btn btn-info btn-sm"
+                                            className="btn btn-sm px-2 py-1"
+                                            style={{
+                                                background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '6px'
+                                            }}
                                             title="View Details"
                                         >
                                             <i className="fas fa-eye"></i>
@@ -55,14 +61,26 @@ function TableView({ cards, onDelete, showActions, handleProtectedAction }) {
                                             <>
                                                 <button 
                                                     onClick={() => handleProtectedAction('edit', card._id)} 
-                                                    className="btn btn-warning btn-sm"
+                                                    className="btn btn-sm px-2 py-1"
+                                                    style={{
+                                                        background: '#f59e0b',
+                                                        color: 'white',
+                                                        border: 'none',
+                                                        borderRadius: '6px'
+                                                    }}
                                                     title="Edit"
                                                 >
                                                     <i className="fas fa-edit"></i>
                                                 </button>
                                                 <button 
                                                     onClick={() => handleProtectedAction('delete', card._id)} 
-                                                    className="btn btn-danger btn-sm"
+                                                    className="btn btn-sm px-2 py-1"
+                                                    style={{
+                                                        background: '#dc2626',
+                                                        color: 'white',
+                                                        border: 'none',
+                                                        borderRadius: '6px'
+                                                    }}
                                                     title="Delete"
                                                 >
                                                     <i className="fas fa-trash"></i>
@@ -80,6 +98,4 @@ function TableView({ cards, onDelete, showActions, handleProtectedAction }) {
     );
 }
 
-// Remove any other export default statements in the file
-// Keep only this one at the end
 export default TableView;

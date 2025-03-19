@@ -65,7 +65,7 @@ body {
 }
 
 /* Form Styles */
-.form-control {
+/* .form-control {
   border-radius: 0.375rem;
   border: 1px solid #e2e8f0;
   padding: 0.625rem;
@@ -74,7 +74,7 @@ body {
 .form-control:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
+} */
 
 /* Custom Utilities */
 .page-header {

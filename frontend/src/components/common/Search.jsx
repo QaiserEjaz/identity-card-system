@@ -2,7 +2,7 @@ import React from 'react';
 
 function Search({ onSearch }) {
     return (
-        <div className="mb-4">
+        <div className="mb-3">
             <div className="input-group">
                 <span className="input-group-text">
                     <i className="fas fa-search"></i>

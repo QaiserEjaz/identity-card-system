@@ -29,11 +29,44 @@ function CardView({ cards, onDelete, showActions, onView, handleProtectedAction 
                                 <div className="text-truncate"><strong>Address:</strong> {card.address}</div>
                             </div>
                             <div className="d-flex gap-2 flex-wrap justify-content-center">
-                                <Link to={`/view/${card._id}`} className="btn btn-info btn-sm">View</Link>
+                                <Link 
+                                    to={`/view/${card._id}`} 
+                                    className="btn btn-sm px-3 py-1"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px'
+                                    }}
+                                >
+                                    <i className="fas fa-eye me-1"></i>View
+                                </Link>
                                 {showActions && (
                                     <>
-                                        <button onClick={() => handleProtectedAction('edit', card._id)} className="btn btn-warning btn-sm">Edit</button>
-                                        <button onClick={() => handleProtectedAction('delete', card._id)} className="btn btn-danger btn-sm">Delete</button>
+                                        <button 
+                                            onClick={() => handleProtectedAction('edit', card._id)} 
+                                            className="btn btn-sm px-3 py-1"
+                                            style={{
+                                                background: '#f59e0b',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '6px'
+                                            }}
+                                        >
+                                            <i className="fas fa-edit me-1"></i>Edit
+                                        </button>
+                                        <button 
+                                            onClick={() => handleProtectedAction('delete', card._id)} 
+                                            className="btn btn-sm px-3 py-1"
+                                            style={{
+                                                background: '#dc2626',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '6px'
+                                            }}
+                                        >
+                                            <i className="fas fa-trash me-1"></i>Delete
+                                        </button>
                                     </>
                                 )}
                             </div>
