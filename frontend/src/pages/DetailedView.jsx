@@ -74,11 +74,11 @@ function DetailedView() {
                     width: '100%',
                     maxWidth: '600px',
                     height: 'auto',
-                    marginTop: 'clamp(3rem, 8vw, 5rem)', // Increased top margin for header clearance
+                    marginTop: 'clamp(4rem, 10vw, 6rem)',  // Increased margin-top
                     marginBottom: 'clamp(1rem, 3vw, 2rem)',
                 }}
             >
-                <div className="card-body p-2 d-flex flex-column">
+                <div className="card-body p-3 d-flex flex-column">
                     <div className="id-card flex-grow-1 d-flex flex-column">
                         {/* Header Section with NFC */}
                         <div className="text-center mb-1 position-relative">
@@ -462,23 +462,15 @@ function DetailedView() {
                         min-height: fit-content;
                         margin-top: clamp(2.5rem, 7vw, 4rem); /* Adjusted for header */
                         margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
-                        backdrop-filter: blur(8px); /* Reduced blur */
                     }
                     .card-body {
-                        padding: clamp(0.5rem, 1.5vw, 0.75rem);
+                        padding: clamp(0.75rem, 2vw, 1rem) !important;
                     }
                     .row.g-1 {
                         gap: 0.2rem !important;
                     }
                     .data-field {
-                        padding: clamp(0.2rem, 0.6vw, 0.3rem);
-                        backdrop-filter: none; /* Remove blur for clarity */
-                    }
-                    .col-12.col-md-4 {
-                        order: 2 !important;
-                    }
-                    .col-12.col-md-8 {
-                        order: 1 !important;
+                        padding: clamp(0.3rem, 0.8vw, 0.4rem);
                     }
                 }
 
@@ -488,7 +480,9 @@ function DetailedView() {
                         margin-top: clamp(2rem, 6vw, 3.5rem); /* Further adjusted */
                         margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
                         border-radius: clamp(8px, 1.5vw, 12px);
-                        backdrop-filter: blur(5px); /* Further reduced blur */
+                    }
+                    .card-body {
+                        padding: 0.75rem !important;
                     }
                     .row.g-1 {
                         gap: 0.15rem !important;
