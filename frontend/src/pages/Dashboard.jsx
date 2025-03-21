@@ -13,6 +13,7 @@ import {
 } from 'chart.js';
 import api from '../utils/api';
 
+// Chart registration
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -25,11 +26,13 @@ ChartJS.register(
 );
 
 function Dashboard() {
+    // State management for dashboard data and UI
     const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [timeRange, setTimeRange] = useState({ range: '7', type: 'days' });
 
+    // Fetch dashboard statistics
     useEffect(() => {
         let mounted = true;
         const controller = new AbortController();
@@ -44,18 +47,10 @@ function Dashboard() {
                 });
 
                 if (mounted && response.data.success) {
-                    console.log('Age stats received:', response.data.data.ageStats);
-                    // Check if we have age data
-                    if (!response.data.data.ageStats || response.data.data.ageStats.length === 0) {
-                        console.warn('No age data received from backend');
-                    } else {
-                        console.log('Age groups found:', response.data.data.ageStats.map(stat => stat._id));
-                    }
                     setStats(response.data.data);
                 }
             } catch (error) {
                 if (mounted) {
-                    console.error('Error fetching stats:', error);
                     setError(error.message || 'Failed to load dashboard data');
                 }
             } finally {
@@ -605,7 +600,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Distribution Charts */}
+                {/* Gender Distribution Charts */}
                 <div className="col-md-6">
                     <div className="card border-0"
                         style={{
@@ -624,7 +619,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-
+                {/* Religion Distribution Charts */}
                 <div className="col-md-6">
                     <div className="card border-0"
                         style={{
@@ -765,10 +760,15 @@ function Dashboard() {
                     padding: 7px 29px;
                     min-width: unset;
                 }
-            
             `}</style>
         </div>
     );
+}
+
+// Helper function for dynamic sizing
+function clamp(min, max, id) {
+    const screenWidth = window.innerWidth;
+    return Math.min(Math.max(min, (screenWidth / 100) * 2), max);
 }
 
 export default Dashboard;
