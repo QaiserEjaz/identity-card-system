@@ -269,22 +269,7 @@ function InputForm() {
                                     .text-muted {
                                         color: #6c757d !important;
                                     }
-                                    .form-control:invalid:not(:focus),
-                                    .form-select:invalid:not(:focus) {
-                                        border-color: #dc3545;
-                                    }
-
-                                    .invalid-feedback {
-                                        display: none;
-                                        color: #dc3545;
-                                        font-size: 0.875em;
-                                        margin-top: 0.25rem;
-                                    }
-
-                                    .form-control:invalid:not(:focus) + label + .invalid-feedback,
-                                    .form-select:invalid:not(:focus) + label + .invalid-feedback {
-                                        display: block;
-                                    }
+                                    
                                 `}</style>
 
                                 <div className="col-md-6">
@@ -303,10 +288,6 @@ function InputForm() {
                                             <i className="fas fa-user me-2 text-muted"></i>
                                             Full Name
                                         </label>
-                                        <div className="invalid-feedback">
-                                            <i className="fas fa-exclamation-circle me-1"></i>
-                                            Full Name is required
-                                        </div>
                                     </div>
                                 </div>
 
