@@ -10,7 +10,7 @@ function Search({ onSearch }) {
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Search by name, CNIC, or address..."
+                    placeholder="Search by name, CNIC, address, or religion..."
                     onChange={(e) => onSearch(e.target.value)}
                 />
             </div>

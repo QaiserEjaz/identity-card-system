@@ -95,7 +95,8 @@ function ViewData() {
         const filtered = cards.filter(card =>
             card.name.toLowerCase().includes(term.toLowerCase()) ||
             card.cnic.includes(term) ||
-            card.address.toLowerCase().includes(term.toLowerCase())
+            card.address.toLowerCase().includes(term.toLowerCase()) ||
+            card.religion.toLowerCase().includes(term.toLowerCase())
         );
         setFilteredCards(filtered);
         // setCurrentPage(1);
