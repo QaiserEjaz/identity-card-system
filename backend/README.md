@@ -3,19 +3,20 @@
 A Node.js backend service for managing identity cards with image upload capabilities, authentication, and MongoDB integration.
 
 ## Technologies Used
-
-- Node.js
-- Express.js
-- MongoDB
-- Multer (for file handling)
-- bcryptjs (for password hashing)
-- CORS
-- dotenv (for environment variables)
+- Node.js & Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- Multer for file handling
+- Rate limiting protection
+- CORS enabled
+- Environment variables management
 
 ## API Endpoints
+
 ### Authentication
-- POST /api/auth/register - Register a new user
-- POST /api/auth/login - Login user
+- POST /api/auth/login - Admin login
+  - Body: { email, password }
+  - Returns: { token, user }
 
 ### Identity Cards
 - GET /api/cards - Get all cards (with pagination)
@@ -27,11 +28,27 @@ A Node.js backend service for managing identity cards with image upload capabili
 - PUT /api/cards/:id - Update an existing card
 - DELETE /api/cards/:id - Delete a card
 
+### Dashboard Analytics
+- GET /api/dashboard/stats - Get dashboard statistics
+  - Query params: 
+    - range (default: 7)
+    - type (default: 'days')
+  - Returns: Activity trends, gender distribution, religion distribution
+
 ### File Upload Specifications
-- Supports image uploads for photos and signatures
-- Maximum file size: 5MB
-- Accepted file types: Images (jpeg, png, etc.)
-- Files are stored as base64 in the database
+- Maximum file size: 500KB
+- Supported formats: JPEG, PNG
+- Image compression enabled
+- Base64 storage in database
+- Separate upload handlers for photos and signatures
+
+## Security Features
+- JWT-based authentication
+- Rate limiting protection
+- Input validation
+- File size and type validation
+- Error handling middleware
+- Secure headers with CORS
 
 ## Project Structure
 ```plaintext

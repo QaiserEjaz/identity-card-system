@@ -18,12 +18,11 @@
 
 A full-stack web application for managing identity cards with advanced features, built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
-[Live Demo](https://your-demo-link.com) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
+[Live Demo](https://identity-card-system.vercel.app) | [Report Bug](https://github.com/QaiserEjaz/identity-card-system/issues)
 
-<img src="./docs/images/banner.png" alt="Project Banner" width="100%"/>
+<!-- <img src="./docs/images/banner.png" alt="Project Banner" width="100%"/> -->
 
 </div>
-
 
 ## ✨ Features
 
@@ -38,15 +37,38 @@ A full-stack web application for managing identity cards with advanced features,
 ### 💡 Advanced Features
 - Real-time form validation
 - Interactive UI with animations
-- Secure file upload handling
-- Pagination for large datasets
-- Search and filter capabilities
+- Secure file upload handling with size restrictions (500KB max)
+- Advanced data visualization with charts
+- Pagination and dynamic search
+- Role-based authentication
+- Admin dashboard with statistics
+- Image compression and optimization
+- Responsive design across all devices
+
+### 🔒 Security Features
+- JWT-based authentication
+- Protected routes and API endpoints
+- File upload validation and sanitization
+- Input data validation
+- Rate limiting protection
+- Secure password handling
+
+### 📊 Dashboard Features
+- Activity trends visualization
+- Gender distribution charts
+- Religion distribution analytics
+- Age group statistics
+- Real-time data updates
+- Customizable time ranges
 
 ___
 
 ## 📸 Screenshots & Interface
 
 <div align="center">
+
+### 🔐 Login Interface
+![Login Preview](./docs/images/login.png)
 
 ### 🖥️ Dashboard View
 ![Dashboard Preview](./docs/images/dashboard.png)
@@ -64,7 +86,7 @@ ___
 ![Card Detail View](./docs/images/card-detail.png)
 
 ### 📄 PDF Export Feature
-![Exported Pdf](./docs/images/exported-pdf.png)
+![Exported Pdf](./docs/images/pdf-preview.png)
 
 </div>
 
@@ -83,11 +105,14 @@ ___
 
 ### Frontend
 - React.js with Vite
-- Bootstrap 5 for styling
-- Axios for API calls
-- jsPDF for PDF generation
+- Redux Toolkit for state management
+- Bootstrap 5 with custom animations
+- Chart.js for data visualization
+- Axios for API integration
+- jsPDF for document generation
 - QR Code generation
 - FontAwesome icons
+- Custom CSS with responsive design
 
 ### Backend
 - Node.js & Express.js
@@ -102,7 +127,7 @@ ___
 ## 🚀 Live Demo
 
 - Frontend: [https://identity-card-system.vercel.app](https://identity-card-system.vercel.app)
-- Backend: [https://identity-card-api.onrender.com](https://identity-card-api.onrender.com)
+- Backend: [https://identity-card-system-backend.up.railway.app](https://identity-card-system-backend.up.railway.app)
 
 ### 📄 Exported PDF Example
 ![PDF Export Feature](./docs/images/exported-pdf.png)
@@ -119,8 +144,10 @@ identity-card-system/
 │   ├── middleware/
 │   ├── uploads/
 │   ├── .env
+│   ├── .env.production
 │   ├── db.js
-│   └── index.js
+│   ├── index.js
+│   └── README.md
 │
 ├── frontend/
 │   ├── src/
@@ -131,10 +158,19 @@ identity-card-system/
 │   │   ├── styles/
 │   │   ├── utils/
 │   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
 │   │   └── main.jsx
+│   ├── .env
+│   ├── .env.production
 │   ├── public/
-│   └── index.html
+│   ├── index.html
+│   ├── README.md
+│   ├── vercel.json
+│   └── vite.config.js
 │
+├── docs/
+│        
 ├── .gitignore        
 ├── package-lock.json        # Project locked dependencies
 ├── package.json            # Project dependencies

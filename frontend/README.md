@@ -12,6 +12,27 @@ A modern React-based frontend for managing and generating digital identity cards
   - Image upload for photos and signatures
   - Responsive card layout
 
+- **Dashboard Analytics**
+  - Real-time activity tracking
+  - Gender and religion distribution charts
+  - Age demographics visualization
+  - Custom time range filters (days/weeks/months)
+  - Interactive data visualization
+
+- **Authentication & Security**
+  - Admin authentication
+  - Protected routes
+  - JWT token management
+  - Session persistence
+  - Secure API integration
+
+- **Advanced Features**
+  - Image compression (max 500KB)
+  - Real-time form validation
+  - Rate limiting handling
+  - Error boundary protection
+  - Loading state management
+
 - **Advanced Viewing Options**
   - Detailed card view with modern UI
   - Grid view for multiple cards
@@ -96,7 +117,20 @@ frontend/
 ```
 
 ## 🔑 Key Components
-- Card Management
+
+### Authentication
+- Login: Admin authentication interface
+- PrivateRoute: Route protection wrapper
+- Redux auth state management
+
+### Dashboard
+- Activity trends visualization
+- Distribution charts (Gender/Religion)
+- Age demographics analysis
+- Time range selector
+- Stats overview cards
+
+### Card Management
   
   - CreateCard: Form for creating new ID cards
   - ViewData: Grid view of all cards
@@ -113,8 +147,7 @@ frontend/
 The application can be configured through environment variables:
 
 ```plaintext
-VITE_API_URL=http://localhost:5000  # Backend API URL
- ```
+VITE_API_URL=http://localhost:5000  # Backend API URL ```
 
 ## 📱 Responsive Design
 - Mobile-first approach
@@ -137,8 +170,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🎨 Design Credits
 UI/UX design inspired by modern identity card systems and material design principles.
 
-```plaintext
-```
 
 ## 📦 Installation
 
