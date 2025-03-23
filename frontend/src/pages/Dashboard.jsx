@@ -493,10 +493,6 @@ function Dashboard() {
                 <div className="col-md-8">
                     <div className="card border-0 h-100"
                         style={{
-                            background: 'linear-gradient(135deg, #2E8B57, #3CB371)',
-                            borderRadius: '20px',
-                            boxShadow: '0 10px 30px rgba(26, 93, 26, 0.2)',
-
                             background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
                             borderRadius: '20px',
                             boxShadow: '0 10px 30px rgba(0, 106, 78, 0.2)',
