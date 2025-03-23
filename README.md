@@ -218,11 +218,42 @@ VITE_API_URL=http://localhost:5000
 ___
 
 ## 👏 Acknowledgments
-- Bootstrap themes and components
-- React documentation
-- MongoDB documentation
-- Express.js guides
 
+- **Design Inspiration**
+  - Material Design Guidelines
+  - Bootstrap Documentation & Examples
+  - Dribbble ID Card Designs
+
+- **Technical Resources**
+  - React.js Documentation
+  - MongoDB University Tutorials
+  - Express.js Official Guides
+  - Redux Toolkit Best Practices
+  - Chart.js Examples Gallery
+
+- **Libraries & Tools**
+  - Bootstrap Themes
+  - FontAwesome Icons
+  - jsPDF Documentation
+  - QRCode.react Examples
+  - Axios HTTP Client
+  - Multer File Upload
+  - JWT Authentication
+  - Vite Build Tool
+
+- **Development Tools**
+  - GitHub Version Control
+  - Vercel Deployment
+  - Railway Platform
+  - MongoDB Atlas
+  - VS Code Editor
+  - Chrome DevTools
+
+<!-- - **Special Thanks**
+  - Open Source Community
+  - Stack Overflow Contributors
+  - GitHub Issues Participants
+  - Beta Testers & Early Users -->
 
 <h2 align="center">
 Engineered with ⚡ Precision by Qaiser Ejaz
