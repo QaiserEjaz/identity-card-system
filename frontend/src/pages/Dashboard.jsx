@@ -427,39 +427,58 @@ function Dashboard() {
     return (
         <div className="container-fluid py-3">
             <div className="row g-3">
-                {/* Stats Cards Row */}
+                {/* Total Cards Card */}
                 <div className="col-md-4">
-                    <div className="card border-0 h-100"
+                    <div className="card border-0 h-100 total-cards-card"
                         style={{
                             background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
                             borderRadius: '20px',
                             boxShadow: '0 10px 30px rgba(0, 106, 78, 0.2)',
+                            overflow: 'hidden'
                         }}>
-                        <div className="card-body text-white position-relative overflow-hidden p-3">
-                            {/* Decorative Elements */}
+                        <div className="card-body text-white position-relative p-4">
+                            {/* Background Pattern */}
                             <div className="position-absolute" style={{
-                                right: '-30px',
-                                top: '-30px',
+                                right: '-20px',
+                                top: '-20px',
+                                width: '200px',
+                                height: '200px',
+                                background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)',
+                                borderRadius: '50%',
+                                zIndex: 1
+                            }}></div>
+                            <div className="position-absolute" style={{
+                                left: '-30px',
+                                bottom: '-30px',
                                 width: '150px',
                                 height: '150px',
-                                background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)',
-                                borderRadius: '50%'
+                                background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%)',
+                                borderRadius: '50%',
+                                zIndex: 1
                             }}></div>
 
-                            <div className="d-flex align-items-center gap-3">
-                                <div className="stats-icon p-2" style={{
+                            <div className="d-flex align-items-center gap-4 position-relative" style={{ zIndex: 2 }}>
+                                <div className="stats-icon p-3" style={{
                                     background: 'rgba(255,255,255,0.2)',
-                                    borderRadius: '12px',
-                                    border: '1px solid rgba(255,255,255,0.3)'
+                                    borderRadius: '15px',
+                                    border: '1px solid rgba(255,255,255,0.3)',
+                                    backdropFilter: 'blur(5px)',
+                                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
                                 }}>
                                     <i className="fas fa-id-card fa-2x"></i>
                                 </div>
                                 <div>
-                                    <h6 className="text-uppercase mb-1 opacity-75" style={{
+                                    <h6 className="text-uppercase mb-2 opacity-75" style={{
                                         fontSize: '0.9rem',
-                                        letterSpacing: '1px'
+                                        letterSpacing: '2px',
+                                        fontWeight: '500'
                                     }}>Total Cards</h6>
-                                    <h2 className="mb-0 display-6 fw-bold">{stats?.totalCards || 0}</h2>
+                                    <h2 className="mb-0 display-5 fw-bold counter-number">
+                                        {stats?.totalCards || 0}
+                                    </h2>
+                                    <p className="mb-0 mt-2 opacity-75" style={{ fontSize: '0.9rem' }}>
+                                        <i className="fas fa-clock me-1"></i> Updated just now
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -666,99 +685,34 @@ function Dashboard() {
             </div>
 
             <style>{`
-                .card {
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    position: relative;
-                    overflow: hidden;
-                }
-                .card::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(
-                        90deg,
-                        transparent,
-                        rgba(255, 255, 255, 0.1),
-                        transparent
-                    );
-                    transition: 0.5s;
-                }
-                .card:hover {
-                    box-shadow: 0 15px 30px rgba(0, 106, 78, 0.15);
-                }
-                .card:hover::before {
-                    left: 100%;
-                }
-                .activity-card {
+                .total-cards-card {
                     transition: all 0.3s ease;
-                    position: relative;
-                    overflow: hidden;
                 }
-                .activity-card:hover {
+                .total-cards-card:hover {
                     transform: translateY(-5px);
-                    background: rgba(255,255,255,0.25) !important;
+                    box-shadow: 0 15px 35px rgba(0, 106, 78, 0.3) !important;
                 }
-                .activity-card:active {
-                    transform: scale(0.98);
-                }
-                .stats-icon {
+                .total-cards-card .stats-icon {
                     transition: all 0.3s ease;
                 }
-                .card:hover .stats-icon {
-                    transform: scale(1.1) rotate(5deg);
+                .total-cards-card:hover .stats-icon {
+                    transform: scale(1.1) rotate(10deg);
                 }
-                .rounded-circle {
-                    transition: all 0.3s ease;
+                .counter-number {
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                 }
-                .activity-card:hover .rounded-circle {
-                    transform: rotate(360deg);
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
-                .form-select {
-                    border-radius: 10px;
-                    border: 1px solid rgba(0, 106, 78, 0.2);
-                    background-color: rgba(255, 255, 255, 0.9);
-                    transition: all 0.3s ease;
-                }
-                .form-select:hover {
-                    border-color: #006A4E;
-                    box-shadow: 0 0 10px rgba(0, 106, 78, 0.1);
-                }
-                .form-select:focus {
-                    border-color: #006A4E;
-                    box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.25);
-                }
-                @keyframes pulse {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(1.05); }
-                    100% { transform: scale(1); }
-                }
-                .card h2.display-6 {
-                    animation: pulse 2s infinite;
-                }
-                
-            .time-range-selector {
-                display: flex;
-                gap: 8px;
-            }
-            
-            .time-range-selector .form-select {
-                min-width: 120px;
-                padding: 7px 29px;
-                font-size: 0.8rem;
-            }
-
-            @media (max-width: 768px) {
-                .time-range-selector {
-                    width: 100%;
-                    justify-content: flex-start;
-                }
-                .time-range-selector .form-select {
-                    flex: 1;
-                    padding: 7px 29px;
-                    min-width: unset;
+                .total-cards-card {
+                    animation: fadeInUp 0.6s ease-out;
                 }
             `}</style>
         </div>
