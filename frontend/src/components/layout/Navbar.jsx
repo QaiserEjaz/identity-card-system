@@ -24,23 +24,25 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg" style={{
-            background: 'linear-gradient(90deg, #001510 0%, #00bf8f 100%)',
-            padding: '1rem 0',
-            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
+        <nav className="navbar navbar-expand-lg mx-2 mx-sm-3 mt-2 mt-sm-3" style={{
+            background: 'linear-gradient(90deg, rgba(0, 21, 16, 0.9) 0%, rgba(0, 191, 143, 0.9) 100%)',
+            padding: '0.75rem 0',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
             position: 'sticky',
-            top: 0,
+            top: '15px',
             zIndex: 1000,
+            borderRadius: '12px',
+            // border: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
             <div className="container">
                 <Link className="navbar-brand d-flex align-items-center" to="/" style={{
                     color: '#ffffff',
-                    fontSize: '1.3rem',
+                    fontSize: '1.2rem',
                     fontWeight: '600',
                     textDecoration: 'none',
                     transition: 'all 0.3s ease'
                 }}>
-                    <i className="fas fa-id-card me-2" style={{fontSize:'1.6rem'}}></i>
+                    <i className="fas fa-id-card me-2" style={{ fontSize: '1.4rem' }}></i>
                     Identity Card System
                 </Link>
                 <button
@@ -157,17 +159,69 @@ function Navbar() {
 
             <style>
                 {`
+                    @media (max-width: 576px) {
+                        .navbar {
+                            margin: 0.5rem !important;
+                            border-radius: 10px;
+                        }
+                        .navbar-brand {
+                            font-size: 1rem !important;
+                        }
+                        .navbar-brand i {
+                            font-size: 1.2rem !important;
+                        }
+                    }
+
+                    @media (min-width: 992px) {
+                        .navbar {
+                            max-width: 95%;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                        }
+                        .nav-link {
+                            margin: 0 0.25rem;
+                        }
+                    }
+
+                    @media (min-width: 1200px) {
+                        .navbar {
+                            max-width: 90%;
+                        }
+                    }
+
+                    @media (max-width: 991px) {
+                        .navbar-collapse {
+                            
+                            padding: 1rem;
+                            border-radius: 8px;
+                            margin-top: 0.5rem;
+                            
+                        }
+                        .navbar-nav {
+                            gap: 0.5rem !important;
+                        }
+                        .nav-link {
+                            padding-left: 1rem !important;
+                            padding-right: 1rem !important;
+                        }
+                    }
+
                     .nav-link:hover {
                         background: rgba(255, 255, 255, 0.1) !important;
                         color: #ffffff !important;
+                        transform: translateY(-1px);
                     }
+
                     .navbar-toggler:focus {
                         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
                     }
+
                     .navbar-toggler {
                         border: none !important;
                         padding: 0.5rem !important;
+                        transition: all 0.3s ease;
                     }
+
                     .navbar-toggler:hover {
                         background: rgba(255, 255, 255, 0.1);
                         border-radius: 8px;

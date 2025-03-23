@@ -463,7 +463,6 @@ function Dashboard() {
                                         background: 'rgba(255,255,255,0.2)',
                                         borderRadius: '16px',
                                         border: '1px solid rgba(255,255,255,0.3)',
-                                        // backdropFilter: 'blur(5px)'
                                     }}>
                                         <i className="fas fa-id-card fa-2x"></i>
                                     </div>
@@ -556,7 +555,7 @@ function Dashboard() {
                                     <div className="activity-card p-3" style={{
                                         background: 'rgba(255,255,255,0.1)',
                                         borderRadius: '16px',
-                                        backdropFilter: 'blur(5px)',
+                                        // backdropFilter: 'blur(5px)',
                                         border: '1px solid rgba(255,255,255,0.2)'
                                     }}>
                                         <div className="d-flex align-items-center gap-3">
@@ -576,7 +575,7 @@ function Dashboard() {
                                     <div className="activity-card p-3" style={{
                                         background: 'rgba(255,255,255,0.1)',
                                         borderRadius: '16px',
-                                        backdropFilter: 'blur(5px)',
+                                        // backdropFilter: 'blur(5px)',
                                         border: '1px solid rgba(255,255,255,0.2)'
                                     }}>
                                         <div className="d-flex align-items-center gap-3">
