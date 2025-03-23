@@ -90,7 +90,7 @@ function Navbar() {
                                     </li>
                                 )}
 
-                                {token && (
+                                {token && !isCurrentPath('/dashboard') && (
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/dashboard" style={{
                                             color: 'rgba(255, 255, 255, 0.9)',
