@@ -427,58 +427,63 @@ function Dashboard() {
     return (
         <div className="container-fluid py-3">
             <div className="row g-3">
-                {/* Total Cards Card */}
+                {/* Stats Cards Row */}
                 <div className="col-md-4">
-                    <div className="card border-0 h-100 total-cards-card"
+                    <div className="card border-0 h-100 position-relative"
                         style={{
                             background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
                             borderRadius: '20px',
                             boxShadow: '0 10px 30px rgba(0, 106, 78, 0.2)',
                             overflow: 'hidden'
                         }}>
-                        <div className="card-body text-white position-relative p-4">
-                            {/* Background Pattern */}
-                            <div className="position-absolute" style={{
-                                right: '-20px',
-                                top: '-20px',
-                                width: '200px',
-                                height: '200px',
-                                background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)',
-                                borderRadius: '50%',
-                                zIndex: 1
-                            }}></div>
-                            <div className="position-absolute" style={{
-                                left: '-30px',
-                                bottom: '-30px',
-                                width: '150px',
-                                height: '150px',
-                                background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%)',
-                                borderRadius: '50%',
-                                zIndex: 1
-                            }}></div>
+                        {/* Grid Background */}
+                        <div className="position-absolute w-100 h-100" style={{
+                            background: `
+                                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                            `,
+                            backgroundSize: '20px 20px',
+                            opacity: '0.7'
+                        }}></div>
 
-                            <div className="d-flex align-items-center gap-4 position-relative" style={{ zIndex: 2 }}>
-                                <div className="stats-icon p-3" style={{
-                                    background: 'rgba(255,255,255,0.2)',
-                                    borderRadius: '15px',
-                                    border: '1px solid rgba(255,255,255,0.3)',
-                                    backdropFilter: 'blur(5px)',
-                                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
-                                }}>
-                                    <i className="fas fa-id-card fa-2x"></i>
+                        {/* Glowing Orb */}
+                        <div className="position-absolute" style={{
+                            right: '-50px',
+                            top: '-50px',
+                            width: '200px',
+                            height: '200px',
+                            background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)',
+                            borderRadius: '50%'
+                        }}></div>
+
+                        <div className="card-body text-white position-relative p-4">
+                            <div className="d-flex flex-column h-100">
+                                <div className="d-flex align-items-center gap-3 mb-4">
+                                    <div className="stats-icon p-3" style={{
+                                        background: 'rgba(255,255,255,0.2)',
+                                        borderRadius: '16px',
+                                        border: '1px solid rgba(255,255,255,0.3)',
+                                        // backdropFilter: 'blur(5px)'
+                                    }}>
+                                        <i className="fas fa-id-card fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h6 className="text-uppercase mb-1 opacity-75" style={{
+                                            fontSize: '0.9rem',
+                                            letterSpacing: '1px'
+                                        }}>Total Cards</h6>
+                                        <h2 className="mb-0 display-5 fw-bold counter-number">
+                                            {stats?.totalCards || 0}
+                                        </h2>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h6 className="text-uppercase mb-2 opacity-75" style={{
-                                        fontSize: '0.9rem',
-                                        letterSpacing: '2px',
-                                        fontWeight: '500'
-                                    }}>Total Cards</h6>
-                                    <h2 className="mb-0 display-5 fw-bold counter-number">
-                                        {stats?.totalCards || 0}
-                                    </h2>
-                                    <p className="mb-0 mt-2 opacity-75" style={{ fontSize: '0.9rem' }}>
-                                        <i className="fas fa-clock me-1"></i> Updated just now
-                                    </p>
+
+                                {/* Updated timestamp */}
+                                <div className="mt-auto pt-3 border-top border-white border-opacity-25">
+                                    <small className="d-flex align-items-center text-white text-opacity-75">
+                                        <i className="fas fa-clock me-2"></i>
+                                        Updated {new Date().toLocaleTimeString()}
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -491,7 +496,28 @@ function Dashboard() {
                             background: 'linear-gradient(135deg, #2E8B57, #3CB371)',
                             borderRadius: '20px',
                             boxShadow: '0 10px 30px rgba(26, 93, 26, 0.2)',
+
+                            background: 'linear-gradient(135deg, #006A4E, #00bf8f)',
+                            borderRadius: '20px',
+                            boxShadow: '0 10px 30px rgba(0, 106, 78, 0.2)',
+                            overflow: 'hidden'
                         }}>
+                            {/* Grid Background */}
+                        <div className="position-absolute w-100 h-100" style={{
+                            background: `
+                                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                            `,
+                            backgroundSize: '20px 20px',
+                            opacity: '0.7'
+                        }}></div>
+
+                        {/* Glowing Orb */}
+                        <div className="position-absolute" style={{
+                            right: '-50px', top: '-50px', width: '200px', height: '200px',
+                            background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)',
+                            borderRadius: '50%',
+                        }}></div>
                         <div className="card-body text-white position-relative overflow-hidden p-4">
                             {/* Decorative Elements */}
                             <div className="position-absolute" style={{
@@ -685,34 +711,104 @@ function Dashboard() {
             </div>
 
             <style>{`
-                .total-cards-card {
-                    transition: all 0.3s ease;
+                .card {
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
                 }
-                .total-cards-card:hover {
+                .card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent,
+                        rgba(255, 255, 255, 0.1),
+                        transparent
+                    );
+                    transition: 0.5s;
+                }
+                .card:hover {
+                    box-shadow: 0 15px 30px rgba(0, 106, 78, 0.15);
+                }
+                .card:hover::before {
+                    left: 100%;
+                }
+                .activity-card {
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+                .activity-card:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0 15px 35px rgba(0, 106, 78, 0.3) !important;
+                    background: rgba(255,255,255,0.25) !important;
                 }
-                .total-cards-card .stats-icon {
-                    transition: all 0.3s ease;
-                }
-                .total-cards-card:hover .stats-icon {
-                    transform: scale(1.1) rotate(10deg);
+                .activity-card:active {
+                    transform: scale(0.98);
                 }
                 .counter-number {
-                    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                    animation: countUp 1s ease-out;
                 }
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+                .stats-icon {
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
                 }
-                .total-cards-card {
-                    animation: fadeInUp 0.6s ease-out;
+                .card:hover .stats-icon {
+                    transform: scale(1.1) rotate(5deg);
+                }
+                .rounded-circle {
+                    transition: all 0.3s ease;
+                }
+                .activity-card:hover .rounded-circle {
+                    transform: rotate(360deg);
+                }
+                .form-select {
+                    border-radius: 10px;
+                    border: 1px solid rgba(0, 106, 78, 0.2);
+                    background-color: rgba(255, 255, 255, 0.9);
+                    transition: all 0.3s ease;
+                }
+                .form-select:hover {
+                    border-color: #006A4E;
+                    box-shadow: 0 0 10px rgba(0, 106, 78, 0.1);
+                }
+                .form-select:focus {
+                    border-color: #006A4E;
+                    box-shadow: 0 0 0 0.25rem rgba(0, 106, 78, 0.25);
+                }
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                }
+                .card h2.display-6 {
+                    animation: pulse 2s infinite;
+                }
+                
+            .time-range-selector {
+                display: flex;
+                gap: 8px;
+            }
+            
+            .time-range-selector .form-select {
+                min-width: 120px;
+                padding: 7px 29px;
+                font-size: 0.8rem;
+            }
+
+            @media (max-width: 768px) {
+                .time-range-selector {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+                .time-range-selector .form-select {
+                    flex: 1;
+                    padding: 7px 29px;
+                    min-width: unset;
                 }
             `}</style>
         </div>
