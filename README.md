@@ -225,7 +225,7 @@ ___
   - Dribbble ID Card Designs
 
 - **Technical Resources**
-  - React.js Documentation
+  - React.js Documentations
   - MongoDB University Tutorials
   - Express.js Official Guides
   - Redux Toolkit Best Practices
