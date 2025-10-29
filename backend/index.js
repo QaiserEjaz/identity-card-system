@@ -43,7 +43,7 @@ app.use(limiter);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
-// Health check endpoint for Railway
+// Health check endpoint
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
@@ -68,7 +68,7 @@ const connectWithRetry = async (retries = 5, delayMs = 2000) => {
         await new Promise((res) => setTimeout(res, delayMs));
       } else {
         console.error("All MongoDB connection attempts failed");
-        // let the process continue — maybe a platform like Railway will restart the container
+  // let the process continue — the hosting platform may restart the container
       }
     }
   }

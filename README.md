@@ -141,7 +141,7 @@ A full-stack web application for managing identity cards with advanced features,
 ## 🚀 Live Demo
 
 - Frontend: [https://identity-card-system.vercel.app](https://identity-card-system.vercel.app)
-- Backend: [https://identity-card-system-backend.up.railway.app](https://identity-card-system-backend.up.railway.app)
+- Backend: [https://identity-card-system-u48c.vercel.app](https://identity-card-system-u48c.vercel.app)
 
 ### 📄 Exported PDF Example
 
@@ -294,7 +294,7 @@ Notes:
 - **Development Tools**
   - GitHub Version Control
   - Vercel Deployment
-  - Railway Platform
+  - Vercel (current backend hosting)
   - MongoDB Atlas
   - VS Code Editor
   - Chrome DevTools
