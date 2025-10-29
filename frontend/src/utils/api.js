@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'https://identity-card-system-backend.up.railway.app/api',
+    baseURL: import.meta.env.VITE_API_URL || 'https://identity-card-system-u48c.vercel.app/api',
     // baseURL:'http://localhost:5000/api',
     timeout: 15000,
     headers: {

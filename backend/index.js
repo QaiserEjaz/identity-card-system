@@ -10,22 +10,25 @@ import { errorHandler } from "./middleware/errorHandler.js";
 import { limiter } from "./middleware/rateLimiter.js";
 import dashboardRoutes from "./routes/dashboard.js"; // Note the .js extension
 import Card from "./models/Card.js";
+import serverless from "serverless-http";
 
 dotenv.config();
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Update CORS configuration
+const productionAllowed = [
+  "https://identity-card-system.vercel.app",
+  "https://identity-card-system-u48c.vercel.app",
+  "https://identity-card-system-qaiser-ejaz-projects.vercel.app",
+  "https://identity-card-system-git-main-qaiser-ejaz-projects.vercel.app",
+  process.env.CORS_ORIGIN,
+].filter(Boolean);
+
 app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? [
-            "https://identity-card-system.vercel.app/",
-            "https://identity-card-system-qaiser-ejaz-projects.vercel.app/",
-            "https://identity-card-system-git-main-qaiser-ejaz-projects.vercel.app/",
-            "https://identity-card-system-backend.up.railway.app",
-            process.env.CORS_ORIGIN,
-          ].filter(Boolean)
+        ? productionAllowed
         : "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -239,8 +242,17 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Identity Card System API is running" });
 });
 
-// This should be the very last part of your file
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export a serverless handler for platforms like Vercel while still
+// allowing the app to run locally with app.listen during development.
+const handler = serverless(app);
+
+// When not running on Vercel, start the Express server for local dev
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Always export the handler (Vercel will import this file via the small shim)
+export default handler;

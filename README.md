@@ -27,6 +27,7 @@ A full-stack web application for managing identity cards with advanced features,
 ## ✨ Features
 
 ### 🎯 Core Functionality
+
 - Create, read, update, and delete identity cards
 - Image upload for photos and signatures
 - PDF generation and preview
@@ -35,6 +36,7 @@ A full-stack web application for managing identity cards with advanced features,
 - Multiple view options (Card/Table view)
 
 ### 💡 Advanced Features
+
 - Real-time form validation
 - Interactive UI with animations
 - Secure file upload handling with size restrictions (500KB max)
@@ -46,6 +48,7 @@ A full-stack web application for managing identity cards with advanced features,
 - Responsive design across all devices
 
 ### 🔒 Security Features
+
 - JWT-based authentication
 - Protected routes and API endpoints
 - File upload validation and sanitization
@@ -54,6 +57,7 @@ A full-stack web application for managing identity cards with advanced features,
 - Secure password handling
 
 ### 📊 Dashboard Features
+
 - Activity trends visualization
 - Gender distribution charts
 - Religion distribution analytics
@@ -61,36 +65,44 @@ A full-stack web application for managing identity cards with advanced features,
 - Real-time data updates
 - Customizable time ranges
 
-___
+---
 
 ## 📸 Screenshots & Interface
 
 <div align="center">
 
 ### 🔐 Login Interface
+
 ![Login Preview](./docs/images/login.png)
 
 ### 🖥️ Dashboard View
+
 ![Dashboard Preview](./docs/images/dashboard.png)
 
 ### 📝 Input Form Interface
+
 ![Input Form](./docs/images/input-form.png)
 
 ### 🎴 Card View Layout
+
 ![Card View](./docs/images/card-view.png)
 
 ### 📋 List View Interface
+
 ![List View](./docs/images/list-view.png)
 
 ### 📱 Card Detail Interface
+
 ![Card Detail View](./docs/images/card-detail.png)
 
 ### 📄 PDF Export Feature
+
 ![Exported Pdf](./docs/images/pdf-preview.png)
 
 </div>
 
 ### Key Interface Features:
+
 - Clean and intuitive dashboard layout
 - Responsive card detail view
 - Professional PDF export design
@@ -99,11 +111,12 @@ ___
 - Interactive data tables
 - Modern form controls
 
-___
+---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js with Vite
 - Redux Toolkit for state management
 - Bootstrap 5 with custom animations
@@ -115,6 +128,7 @@ ___
 - Custom CSS with responsive design
 
 ### Backend
+
 - Node.js & Express.js
 - MongoDB with Mongoose
 - Multer for file handling
@@ -122,7 +136,7 @@ ___
 - Rate limiting
 - Environment variables
 
-___
+---
 
 ## 🚀 Live Demo
 
@@ -130,12 +144,13 @@ ___
 - Backend: [https://identity-card-system-backend.up.railway.app](https://identity-card-system-backend.up.railway.app)
 
 ### 📄 Exported PDF Example
+
 ![PDF Export Feature](./docs/images/exported-pdf.png)
 
-
-___
+---
 
 ## 📱 Application Structure
+
 ```plaintext
 identity-card-system/
 ├── backend/
@@ -170,61 +185,95 @@ identity-card-system/
 │   └── vite.config.js
 │
 ├── docs/
-│        
-├── .gitignore        
+│
+├── .gitignore
 ├── package-lock.json        # Project locked dependencies
 ├── package.json            # Project dependencies
 └── README.md
 ```
-___
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js (v14+)
 - MongoDB
 - npm/yarn
 
 ### Installation
+
 ```bash
 git clone https://github.com/QaiserEjaz/identity-card-system.git
 cd identity-card-system
- ```
- 
+```
+
 2. Backend Setup
+
 ```bash
 cd backend
 npm install
- ```
+```
 
 #### Create .env file in backend directory:
 
 ```plaintext
 MONGODB_URI=your_mongodb_connection_string
 PORT=5000
- ```
+```
 
 3. Frontend Setup
+
 ```bash
 cd ../frontend
 npm install
- ```
+```
 
 #### Create .env file in frontend directory:
 
 ```plaintext
 VITE_API_URL=http://localhost:5000
- ```
-___
+```
 
-## 👏 Acknowledgments
+---
+
+## � Deploying to Vercel
+
+You can deploy the frontend and backend to Vercel. There are two recommended approaches:
+
+1. Separate projects (recommended)
+
+- Create two Vercel projects:
+
+  - Frontend: point to the `frontend` folder. This is a static site built by Vite.
+  - Backend: point to the `backend` folder. The backend exposes a Serverless Function at `backend/api/index.js`.
+
+- For the backend project set the Root Directory to `backend` in the Vercel project settings. Vercel will install dependencies from `backend/package.json` and build the function.
+
+- Ensure the following environment variables are set in the backend project (Vercel > Settings > Environment Variables):
+  - `MONGODB_URI` — your MongoDB connection string
+  - `NODE_ENV=production`
+
+2. Single monorepo project
+
+- You can also deploy the whole repo as a monorepo, but you must configure two separate projects in Vercel or use monorepo settings to build each part. For simplicity, creating two projects is easier.
+
+Notes:
+
+- The backend uses `serverless-http` and exports a serverless handler. The backend `vercel.json` (located in `backend/vercel.json`) maps incoming requests to `api/index.js` so API routes like `/api/cards` will work.
+- Locally you can continue to run the frontend and backend concurrently with `npm run dev` from the repository root.
+
+## �👏 Acknowledgments
 
 - **Design Inspiration**
+
   - Material Design Guidelines
   - Bootstrap Documentation & Examples
   - Dribbble ID Card Designs
 
 - **Technical Resources**
+
   - React.js Documentations
   - MongoDB University Tutorials
   - Express.js Official Guides
@@ -232,6 +281,7 @@ ___
   - Chart.js Examples Gallery
 
 - **Libraries & Tools**
+
   - Bootstrap Themes
   - FontAwesome Icons
   - jsPDF Documentation
